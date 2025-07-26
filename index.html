@@ -10,8 +10,8 @@
 </head>
 <body>
     <header>
+        <div class="logo">T voor Thee</div>
         <nav class="boba-orb">
-            <div class="logo">T voor Thee</div>
             <ul>
                 <li style="transform: rotate(0deg) translate(150px) rotate(0deg);"><a href="index.html">Home</a></li>
                 <li style="transform: rotate(120deg) translate(150px) rotate(-120deg);"><a href="menu.html">Menu</a></li>
@@ -24,7 +24,7 @@
         <section class="hero bubble-section" style="top: 10%; left: 10%;">
             <h1>Welcome to T voor Thee!</h1>
             <p>Dive into bubbly bliss with our handcrafted bubble teas!</p>
-            <img src="placeholder-bubble-tea.jpg" alt="Boba Tea" class="hero-image">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Boba Tea">
         </section>
 
         <section class="reviews bubble-section" style="top: 50%; right: 10%;">
@@ -39,7 +39,7 @@
     </footer>
 
     <script>
-        // Particle Animation for Boba Pearls
+        // Particle Animation
         function createParticles() {
             const container = document.createElement('div');
             container.className = 'particles';
@@ -68,13 +68,10 @@
             });
         });
 
-        // Google Places API for Reviews
+        // Google Places API
         function initMap() {
             const placeId = 'YOUR_PLACE_ID';
-            const request = {
-                placeId: placeId,
-                fields: ['name', 'rating', 'user_ratings_total', 'reviews']
-            };
+            const request = { placeId: placeId, fields: ['name', 'rating', 'user_ratings_total', 'reviews'] };
             const service = new google.maps.places.PlacesService(document.createElement('div'));
             service.getDetails(request, (place, status) => {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -83,10 +80,7 @@
                     place.reviews.forEach(review => {
                         const reviewElem = document.createElement('div');
                         reviewElem.className = 'review-card';
-                        reviewElem.innerHTML = `
-                            <p>"${review.text}"</p>
-                            <p>- ${review.author_name} (${'★'.repeat(review.rating)})</p>
-                        `;
+                        reviewElem.innerHTML = `<p>"${review.text}"</p><p>- ${review.author_name} (${'★'.repeat(review.rating)})</p>`;
                         reviewsContainer.appendChild(reviewElem);
                     });
                 } else {
