@@ -1,17 +1,122 @@
-/* General Setup */
+/* Neo-Lo Bubble Flux: A 2025 paradigm shift fusing Neobrutalism's raw chaos (bold borders, asymmetry) with Lo-Fi's nostalgic grit (grainy textures, Y2K retro), infused with dopamine neons, microinteractions, and experimental 'bubbling' layouts. 
+   Ditches typical grids/top-nav for a central 'Flux Hub' with floating boba pearls that expand into sections on hover/scroll. Sections 'bubble up' asymmetrically with 3D tilts and glitchy transitions. Readable neon titles pulse subtly. Cursor trails boba sparks. Invites Gen Z/Millennials with playful, immersive joy – like sipping boba in a retro-futuristic dream. */
+
+/* General Setup – Lo-Fi Grain + Dopamine Base */
 body {
-    font-family: 'Verdana', 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa 0%, #ffccbc 100%), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgY8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Frutiger Aero gradient with Lo-Fi grain */
+    font-family: 'Courier New', monospace; /* Lo-Fi retro font */
+    background: linear-gradient(135deg, #ff6f61 0%, #00fff9 100%), 
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Grainy Lo-Fi texture with dopamine gradient */
     color: #1a1a1a;
     margin: 0;
     padding: 0;
-    line-height: 1.7;
-    overflow-x: hidden;
-    text-shadow: 0 0 5px rgba(0,255,255,0.2); /* Aero glow */
-    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4='), auto; /* Boba pearl cursor */
+    overflow: hidden; /* For immersive flux */
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4='), auto; /* Boba cursor */
+    animation: fluxBg 15s infinite alternate ease-in-out; /* Gentle dopamine pulse */
 }
 
-/* Particle Animation Container */
+@keyframes fluxBg {
+    0% { background-position: 0% 50%; opacity: 1; }
+    100% { background-position: 100% 50%; opacity: 0.9; }
+}
+
+/* Flux Hub – Experimental Central Nav (No typical top bar) */
+header {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    transition: transform 0.5s ease;
+}
+
+nav {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #ff00ff; /* Neon magenta */
+    text-shadow: 0 0 5px #ff00ff; /* Readable neon glow */
+    animation: subtleNeon 3s infinite alternate;
+}
+
+@keyframes subtleNeon {
+    0% { text-shadow: 0 0 5px #ff00ff; }
+    100% { text-shadow: 0 0 10px #ff00ff; }
+}
+
+ul {
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: bubbleRotate 30s linear infinite;
+}
+
+ul li {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.5); /* Lo-Fi dark bubble */
+    border-radius: 50%;
+    border: 4px solid #1a1a1a; /* Neobrutalist bold border */
+    box-shadow: 5px 5px 10px rgba(0,255,255,0.5); /* Glowing flux */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+ul li:hover {
+    transform: scale(1.5); /* Bubble expand */
+    box-shadow: 0 0 15px #ff6f61; /* Dopamine glow */
+}
+
+ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+@keyframes bubbleRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Main Content – Asymmetrical Bubble Sections with Scroll-Trigger Flux */
+main {
+    position: relative;
+    height: 200vh; /* For scrolling flux */
+    perspective: 1000px;
+}
+
+.hero, .reviews, .menu-grid, .drink-details, .about-section {
+    position: absolute;
+    padding: 2rem;
+    background: rgba(255,255,255,0.2); /* Glassy Lo-Fi */
+    border: 5px solid #1a1a1a; /* Brutalist border */
+    border-radius: 50%; /* Bubble shape */
+    opacity: 0;
+    transform: scale(0.5) rotateY(30deg); /* 3D flux start */
+    transition: all 0.6s ease-out;
+}
+
+.hero.active, .reviews.active /* etc. */ {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+}
+
+/* Floating Boba Particles – UFO/Organic Trend with Microinteractions */
 .particles {
     position: fixed;
     top: 0;
@@ -24,314 +129,71 @@ body {
 
 .particle {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iNSIgZmlsbD0iIzAwZmZmOSIvPjwvc3ZnPg=='); /* Cyan boba particle */
-    animation: float 10s infinite linear;
-    opacity: 0.7;
+    width: 20px;
+    height: 20px;
+    background: #000; /* Boba pearl */
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00fff9; /* Neon flux glow */
+    animation: bobaFloat 20s infinite linear;
+    transition: transform 0.2s ease; /* Microinteraction on hover */
 }
 
-@keyframes float {
-    0% { transform: translate(0, 0); opacity: 0.3; }
-    50% { opacity: 0.8; }
-    100% { transform: translate(100vw, -100vh); opacity: 0.3; }
+.particle:hover {
+    transform: scale(1.5); /* Pop on hover */
 }
 
-/* Header */
-header {
-    background: rgba(255, 255, 255, 0.1); /* Glassy Frutiger Aero */
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    border-bottom: 4px solid #ff6f61; /* Neobrutalist bold border */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 0 20px rgba(0,255,255,0.3);
+@keyframes bobaFloat {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(calc(50vw - 50%), -50vh); }
+    100% { transform: translate(calc(100vw - 100%), -100vh); }
 }
 
-/* Navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo {
-    font-family: 'Courier New', 'Comic Neue', cursive;
-    font-size: 2.5rem;
-    color: #ff6f61; /* Vibrant coral */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: glitch 2s infinite;
-    position: relative;
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    2% { transform: translate(-2px, 2px); color: #00fff9; }
-    4% { transform: translate(2px, -2px); color: #ff00ff; }
-    6% { transform: translate(0); color: #ff6f61; }
-    100% { transform: translate(0); }
-}
-
-ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    padding: 0.8rem 1.5rem;
-    border: 3px solid #00fff9; /* Neobrutalist outline */
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,255,255,0.5);
-    transform-style: preserve-3d;
-}
-
-a:hover {
-    transform: scale(1.1) rotateX(10deg); /* 3D tilt */
-    background: linear-gradient(45deg, #ff00ff, #00fff9);
-    box-shadow: 0 0 15px rgba(255,0,255,0.7);
-    color: #1a1a1a;
-}
-
-a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-    transition: 0.5s;
-}
-
-a:hover::before {
-    left: 100%; /* Shimmer effect */
-}
-
-/* Main Content */
-main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    perspective: 1000px; /* Enable 3D transforms */
-}
-
-.hero {
-    text-align: center;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    border: 5px solid #1a1a1a;
-    border-radius: 15px;
-    animation: pulse 3s infinite;
-    transform-style: preserve-3d;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 10px rgba(0,255,255,0.3); }
-    50% { box-shadow: 0 0 20px rgba(0,255,255,0.6); }
-    100% { box-shadow: 0 0 10px rgba(0,255,255,0.3); }
-}
-
+/* Titles – Readable Neon Glow */
 h1, h2 {
-    font-family: 'Courier New', monospace;
+    font-size: 2.5rem;
     color: #ff00ff;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    animation: neonFlicker 4s infinite;
-    position: relative;
+    text-shadow: 0 0 5px #ff00ff; /* Decent, readable glow */
+    animation: subtleNeon 3s infinite;
 }
 
-@keyframes neonFlicker {
-    0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-    2% { text-shadow: none; }
-    4% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-    100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
-}
-
-h1::after, h2::after {
-    content: '🧋';
-    font-size: 0.9em;
-    margin-left: 10px;
-    animation: bobble 1.5s infinite;
-}
-
-@keyframes bobble {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
-}
-
-.hero-image {
-    max-width: 300px;
-    border-radius: 20px;
-    border: 3px solid #1a1a1a;
-    box-shadow: 0 0 15px rgba(0,255,255,0.5);
-    transition: all 0.4s ease;
-    transform-style: preserve-3d;
-}
-
-.hero-image:hover {
-    transform: scale(1.15) rotateX(15deg); /* 3D flip effect */
-    filter: brightness(1.2);
-}
-
-/* Reviews */
-.reviews {
-    margin-top: 2rem;
-}
-
-.review-card {
-    background: rgba(255, 255, 255, 0.3);
-    padding: 1.5rem;
-    margin: 1rem 0;
-    border: 4px solid #1a1a1a;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255,0,255,0.4);
-    transition: all 0.3s ease;
-    animation: glitchFade 1s ease-out;
-    transform-style: preserve-3d;
-}
-
-.review-card:hover {
-    transform: translate(5px, -5px) rotateY(10deg); /* 3D card tilt */
-    box-shadow: 10px 10px 0 #ff6f61;
-}
-
-@keyframes glitchFade {
-    0% { opacity: 0; transform: skew(10deg); }
-    100% { opacity: 1; transform: skew(0); }
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    background: linear-gradient(45deg, #ff6f61, #00fff9);
-    color: #fff;
-    font-family: 'Courier New', monospace;
-    text-transform: uppercase;
-    border-top: 4px solid #1a1a1a;
-}
-
-/* Menu Grid */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
+/* Menu Items – 3D Brutalist with Lo-Fi Grain */
 .menu-item {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
-    border: 3px solid #1a1a1a;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 5px 5px 0 #00fff9;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
+    background: rgba(0,0,0,0.3); /* Lo-Fi dark */
+    border: 6px solid #1a1a1a; /* Brutalist */
+    box-shadow: 10px 10px #ff6f61; /* Offset shadow */
     transform-style: preserve-3d;
+    transition: transform 0.4s;
 }
 
 .menu-item:hover {
-    transform: scale(1.1) rotateY(180deg); /* 3D flip */
-    box-shadow: 10px 10px 0 #ff00ff;
-    background: rgba(255, 255, 255, 0.4);
+    transform: rotateX(15deg) rotateY(15deg); /* 3D tilt */
 }
 
-.menu-item::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
+/* Reviews – Glitchy Lo-Fi Cards */
+.review-card {
+    border: 4px dashed #00fff9; /* Playful brutalist */
+    animation: glitch 1s infinite alternate;
+}
+
+@keyframes glitch {
+    0% { transform: skew(0deg); }
+    100% { transform: skew(2deg); }
+}
+
+/* Footer – Retro Wave Flux */
+footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(0deg, transparent, rgba(0,255,255,0.5), transparent);
-    transition: 0.5s;
+    padding: 1rem;
+    background: linear-gradient(#ff6f61, #00fff9);
+    text-align: center;
+    border-top: 5px solid #1a1a1a;
+    animation: waveFlux 5s infinite;
 }
 
-.menu-item:hover::before {
-    top: 100%; /* Vertical shimmer */
-}
-
-.menu-item img {
-    max-width: 200px;
-    border-radius: 15px;
-    border: 2px solid #fff;
-    transition: transform 0.3s ease;
-    backface-visibility: hidden;
-}
-
-.menu-item:hover img {
-    transform: scale(1.2) rotate(5deg);
-}
-
-/* Drink Details */
-.drink-details {
-    background: rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    border: 4px solid #1a1a1a;
-    border-radius: 15px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 0 15px rgba(0,255,255,0.5);
-    animation: pulse 3s infinite;
-    transform-style: preserve-3d;
-}
-
-.drink-details img {
-    max-width: 400px;
-    border-radius: 15px;
-    border: 3px solid #1a1a1a;
-    display: block;
-    margin: 0 auto 1rem;
-    transition: transform 0.4s ease;
-}
-
-.drink-details img:hover {
-    transform: scale(1.1) rotateX(10deg); /* 3D tilt */
-}
-
-/* About Section */
-.about-section {
-    background: rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    border: 4px solid #1a1a1a;
-    border-radius: 15px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 0 15px rgba(0,255,255,0.5);
-    animation: pulse 3s infinite;
-    transform-style: preserve-3d;
-}
-
-p {
-    animation: textWave 5s infinite;
-}
-
-@keyframes textWave {
-    0% { transform: translateY(0); text-shadow: 0 0 5px rgba(0,255,255,0.3); }
-    50% { transform: translateY(-2px); text-shadow: 0 0 10px rgba(0,255,255,0.5); }
-    100% { transform: translateY(0); text-shadow: 0 0 5px rgba(0,255,255,0.3); }
-}
-
-/* JavaScript for Particles */
-:where(.hero, .reviews, .menu-grid, .drink-details, .about-section)::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+@keyframes waveFlux {
+    0% { transform: skew(0); }
+    50% { transform: skew(3deg); }
+    100% { transform: skew(0); }
 }
