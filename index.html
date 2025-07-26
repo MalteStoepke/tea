@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T voor Thee - Cute Bubble Tea Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">T voor Thee</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to T voor Thee!</h1>
+            <p>Your cute spot for delicious bubble tea. Sip on happiness!</p>
+            <img src="placeholder-bubble-tea.jpg" alt="Cute bubble tea illustration" class="hero-image">
+        </section>
+
+        <section class="reviews">
+            <h2>What Our Customers Say</h2>
+            <div id="rating"></div>
+            <div id="reviews-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 T voor Thee. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function initMap() {
+            const placeId = 'YOUR_PLACE_ID'; // Replace with the actual Place ID for T voor Thee
+            const request = {
+                placeId: placeId,
+                fields: ['name', 'rating', 'user_ratings_total', 'reviews']
+            };
+
+            const service = new google.maps.places.PlacesService(document.createElement('div'));
+            service.getDetails(request, (place, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    document.getElementById('rating').innerHTML = `Overall Rating: ${place.rating} ⭐ (${place.user_ratings_total} reviews)`;
+
+                    const reviewsContainer = document.getElementById('reviews-container');
+                    place.reviews.forEach(review => {
+                        const reviewElem = document.createElement('div');
+                        reviewElem.className = 'review-card';
+                        reviewElem.innerHTML = `
+                            <p>"${review.text}"</p>
+                            <p>- ${review.author_name} (${'★'.repeat(review.rating)})</p>
+                        `;
+                        reviewsContainer.appendChild(reviewElem);
+                    });
+                } else {
+                    console.error('PlacesServiceStatus:', status);
+                    document.getElementById('reviews-container').innerHTML = '<p>Unable to load reviews. Please check the console for errors.</p>';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
