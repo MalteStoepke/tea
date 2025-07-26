@@ -1,25 +1,26 @@
-/* Neo-Lo Bubble Flux: A 2025 paradigm shift fusing Neobrutalism's raw chaos (bold borders, asymmetry) with Lo-Fi's nostalgic grit (grainy textures, Y2K retro), infused with dopamine neons, microinteractions, and experimental 'bubbling' layouts. 
-   Ditches typical grids/top-nav for a central 'Flux Hub' with floating boba pearls that expand into sections on hover/scroll. Sections 'bubble up' asymmetrically with 3D tilts and glitchy transitions. Readable neon titles pulse subtly. Cursor trails boba sparks. Invites Gen Z/Millennials with playful, immersive joy – like sipping boba in a retro-futuristic dream. */
+/* Boba Flux Pulse: A 2025 revolution blending Neobrutalism's raw, chunky frames with Lo-Fi's gritty Y2K nostalgia. Central 'Boba Orb' nav with floating pearls replaces boring top bars. Organic bubble sections flux into view with 3D tilts and glitchy vibes. Readable neon titles pulse like arcade signs. Custom boba cursor with spark trails and floating particles create an immersive, Gen Z/Millennial-pulling boba tea dreamscape. */
 
-/* General Setup – Lo-Fi Grain + Dopamine Base */
+/* General Setup – Lo-Fi Grit + Dopamine Neons */
 body {
-    font-family: 'Courier New', monospace; /* Lo-Fi retro font */
+    font-family: 'Press Start 2P', monospace; /* Y2K arcade font */
     background: linear-gradient(135deg, #ff6f61 0%, #00fff9 100%), 
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Grainy Lo-Fi texture with dopamine gradient */
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Lo-Fi grain texture */
     color: #1a1a1a;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* For immersive flux */
-    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4='), auto; /* Boba cursor */
-    animation: fluxBg 15s infinite alternate ease-in-out; /* Gentle dopamine pulse */
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 200vh; /* Allow scrolling for flux */
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIzIiBmaWxsPSIjZmYwMGZmIi8+PC9zdmc+'), auto; /* Boba cursor with neon spark */
+    animation: fluxBg 12s infinite alternate ease-in-out; /* Subtle dopamine pulse */
 }
 
 @keyframes fluxBg {
-    0% { background-position: 0% 50%; opacity: 1; }
-    100% { background-position: 100% 50%; opacity: 0.9; }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
-/* Flux Hub – Experimental Central Nav (No typical top bar) */
+/* Boba Orb Nav – Central, Floating, Interactive Hub */
 header {
     position: fixed;
     top: 50%;
@@ -29,10 +30,16 @@ header {
     transition: transform 0.5s ease;
 }
 
-nav {
+.boba-orb {
     position: relative;
     width: 300px;
     height: 300px;
+    animation: orbPulse 10s infinite alternate;
+}
+
+@keyframes orbPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
 }
 
 .logo {
@@ -40,15 +47,15 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #ff00ff; /* Neon magenta */
-    text-shadow: 0 0 5px #ff00ff; /* Readable neon glow */
-    animation: subtleNeon 3s infinite alternate;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; /* Readable neon glow */
+    animation: neonFlicker 3s infinite alternate;
 }
 
-@keyframes subtleNeon {
+@keyframes neonFlicker {
     0% { text-shadow: 0 0 5px #ff00ff; }
-    100% { text-shadow: 0 0 10px #ff00ff; }
+    100% { text-shadow: 0 0 8px #ff00ff; }
 }
 
 ul {
@@ -58,23 +65,23 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    animation: bubbleRotate 30s linear infinite;
+    animation: bubbleRotate 25s linear infinite;
 }
 
 ul li {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: rgba(0,0,0,0.5); /* Lo-Fi dark bubble */
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.6); /* Lo-Fi dark bubble */
     border-radius: 50%;
-    border: 4px solid #1a1a1a; /* Neobrutalist bold border */
-    box-shadow: 5px 5px 10px rgba(0,255,255,0.5); /* Glowing flux */
+    border: 5px solid #1a1a1a; /* Neobrutalist bold */
+    box-shadow: 5px 5px 10px rgba(0, 255, 255, 0.5); /* Cyan flux glow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 ul li:hover {
-    transform: scale(1.5); /* Bubble expand */
-    box-shadow: 0 0 15px #ff6f61; /* Dopamine glow */
+    transform: scale(1.4) rotate(15deg); /* Bubble pop */
+    box-shadow: 0 0 20px #ff6f61; /* Dopamine coral glow */
 }
 
 ul li a {
@@ -84,8 +91,10 @@ ul li a {
     width: 100%;
     height: 100%;
     color: #fff;
+    font-size: 0.9rem;
     text-decoration: none;
-    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 @keyframes bubbleRotate {
@@ -93,30 +102,41 @@ ul li a {
     100% { transform: rotate(360deg); }
 }
 
-/* Main Content – Asymmetrical Bubble Sections with Scroll-Trigger Flux */
+/* Main Content – Organic Bubble Sections with Flux Animation */
 main {
     position: relative;
-    height: 200vh; /* For scrolling flux */
-    perspective: 1000px;
+    perspective: 1200px; /* 3D depth */
 }
 
-.hero, .reviews, .menu-grid, .drink-details, .about-section {
+.bubble-section {
     position: absolute;
     padding: 2rem;
-    background: rgba(255,255,255,0.2); /* Glassy Lo-Fi */
-    border: 5px solid #1a1a1a; /* Brutalist border */
+    background: rgba(255, 255, 255, 0.3); /* Glassy Lo-Fi */
+    border: 6px solid #1a1a1a; /* Brutalist frame */
     border-radius: 50%; /* Bubble shape */
     opacity: 0;
-    transform: scale(0.5) rotateY(30deg); /* 3D flux start */
-    transition: all 0.6s ease-out;
+    transform: scale(0.5) rotateY(45deg); /* 3D flux start */
+    transition: all 0.8s ease-out;
+    box-shadow: 10px 10px 0 #ff6f61; /* Neobrutalist offset */
 }
 
-.hero.active, .reviews.active /* etc. */ {
+.bubble-section.active {
     opacity: 1;
     transform: scale(1) rotateY(0deg);
 }
 
-/* Floating Boba Particles – UFO/Organic Trend with Microinteractions */
+.hero-image {
+    max-width: 250px;
+    border-radius: 30px;
+    border: 4px solid #1a1a1a;
+    transition: transform 0.4s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.2) rotateX(10deg); /* 3D pop */
+}
+
+/* Floating Boba Particles – Interactive and Playful */
 .particles {
     position: fixed;
     top: 0;
@@ -129,71 +149,131 @@ main {
 
 .particle {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #000; /* Boba pearl */
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #000 50%, #ff00ff 100%); /* Boba with neon rim */
     border-radius: 50%;
-    box-shadow: 0 0 10px #00fff9; /* Neon flux glow */
-    animation: bobaFloat 20s infinite linear;
-    transition: transform 0.2s ease; /* Microinteraction on hover */
+    box-shadow: 0 0 15px #00fff9; /* Cyan glow */
+    animation: bobaFloat 18s infinite linear;
 }
 
 .particle:hover {
-    transform: scale(1.5); /* Pop on hover */
+    transform: scale(1.3); /* Microinteraction */
 }
 
 @keyframes bobaFloat {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(calc(50vw - 50%), -50vh); }
-    100% { transform: translate(calc(100vw - 100%), -100vh); }
+    0% { transform: translate(0, 0); opacity: 0.4; }
+    50% { transform: translate(calc(50vw - 50%), -50vh); opacity: 1; }
+    100% { transform: translate(calc(100vw - 100%), -100vh); opacity: 0.4; }
 }
 
 /* Titles – Readable Neon Glow */
 h1, h2 {
-    font-size: 2.5rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
     color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff; /* Decent, readable glow */
-    animation: subtleNeon 3s infinite;
+    text-shadow: 0 0 4px #ff00ff; /* Subtle, readable neon */
+    animation: subtleNeon 4s infinite alternate;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* Menu Items – 3D Brutalist with Lo-Fi Grain */
+p {
+    font-family: 'Poppins', sans-serif; /* Readable contrast */
+    animation: textWave 6s infinite;
+}
+
+@keyframes textWave {
+    0% { transform: translateY(0); text-shadow: 0 0 3px rgba(0,255,255,0.3); }
+    50% { transform: translateY(-3px); text-shadow: 0 0 6px rgba(0,255,255,0.5); }
+    100% { transform: translateY(0); text-shadow: 0 0 3px rgba(0,255,255,0.3); }
+}
+
+/* Menu Items – 3D Brutalist with Lo-Fi Texture */
 .menu-item {
-    background: rgba(0,0,0,0.3); /* Lo-Fi dark */
-    border: 6px solid #1a1a1a; /* Brutalist */
-    box-shadow: 10px 10px #ff6f61; /* Offset shadow */
+    background: rgba(0, 0, 0, 0.4); /* Lo-Fi dark */
+    border: 6px solid #1a1a1a;
+    box-shadow: 8px 8px 0 #ff6f61;
+    padding: 1.5rem;
+    border-radius: 20px 0; /* Asymmetrical */
     transform-style: preserve-3d;
-    transition: transform 0.4s;
+    transition: transform 0.4s ease;
 }
 
 .menu-item:hover {
-    transform: rotateX(15deg) rotateY(15deg); /* 3D tilt */
+    transform: rotateX(10deg) rotateY(10deg); /* 3D tilt */
+    box-shadow: 12px 12px 0 #00fff9; /* Neon shift */
+}
+
+.menu-item img {
+    max-width: 200px;
+    border-radius: 15px;
+    border: 3px solid #1a1a1a;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover img {
+    transform: scale(1.1) rotate(5deg);
 }
 
 /* Reviews – Glitchy Lo-Fi Cards */
 .review-card {
-    border: 4px dashed #00fff9; /* Playful brutalist */
-    animation: glitch 1s infinite alternate;
+    background: rgba(255, 255, 255, 0.2);
+    border: 5px dashed #00fff9; /* Playful brutalist */
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 #ff6f61;
+    animation: glitchFade 1.5s ease-out;
+    transition: all 0.3s ease;
 }
 
-@keyframes glitch {
-    0% { transform: skew(0deg); }
-    100% { transform: skew(2deg); }
+.review-card:hover {
+    transform: translate(5px, -5px);
+    box-shadow: 10px 10px 0 #00fff9;
 }
 
-/* Footer – Retro Wave Flux */
+@keyframes glitchFade {
+    0% { opacity: 0; transform: skew(5deg); }
+    100% { opacity: 1; transform: skew(0deg); }
+}
+
+/* Drink Details & About – Bubble Flux */
+.drink-details, .about-section {
+    background: rgba(255, 255, 255, 0.3);
+    border: 6px solid #1a1a1a;
+    border-radius: 50%;
+    padding: 2rem;
+    box-shadow: 10px 10px 0 #ff6f61;
+    transition: all 0.8s ease-out;
+}
+
+.drink-details img {
+    max-width: 300px;
+    border-radius: 20px;
+    border: 3px solid #1a1a1a;
+    transition: transform 0.4s ease;
+}
+
+.drink-details img:hover {
+    transform: scale(1.1) rotateX(10deg);
+}
+
+/* Footer – Retro Arcade Vibes */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(#ff6f61, #00fff9);
+    background: linear-gradient(45deg, #ff6f61, #00fff9);
     text-align: center;
     border-top: 5px solid #1a1a1a;
+    font-family: 'Press Start 2P', monospace;
+    color: #fff;
     animation: waveFlux 5s infinite;
 }
 
 @keyframes waveFlux {
-    0% { transform: skew(0); }
-    50% { transform: skew(3deg); }
-    100% { transform: skew(0); }
+    0% { transform: skew(0deg); }
+    50% { transform: skew(2deg); }
+    100% { transform: skew(0deg); }
 }
