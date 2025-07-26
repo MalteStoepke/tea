@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taro Bubble Tea - T voor Thee</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">T voor Thee</div>
+        <nav class="scrapbook-nav">
+            <ul>
+                <li><a href="index.html" class="sticky-note">Home</a></li>
+                <li><a href="menu.html" class="sticky-note">Menu</a></li>
+                <li><a href="about.html" class="sticky-note">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="drink-details corkboard-section">
+            <h1>Taro Bubble Tea</h1>
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCA1MCAxNTAgNTAgMTAwQzUwIDUwIDEwMCAyMCAxMDAgMjBDMTUwIDIwIDIwMCA1MCAyMDAgMTAwQzIwMCAxNTAgMTUwIDE4MCAxMDAgMTgwWiIgZmlsbD0iI2ZmZDJiNSIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjEwIiBmaWxsPSIjNDgyNTAyIi8+PHBhdGggZD0iTTEwMCAyME0xMDAgMTgwIiBzdHJva2U9IiM0ODI1MDIiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==" alt="Taro Bubble Tea">
+            <p>ID: BT-002</p>
+            <h2>Ingredients</h2>
+            <ul>
+                <li>Taro powder</li>
+                <li>Milk</li>
+                <li>Tapioca pearls</li>
+                <li>Sugar syrup</li>
+            </ul>
+            <h2>Description</h2>
+            <p>A creamy, purple dream with nutty taro and chewy boba pearls.</p>
+            <p>Price: €5.00</p>
+            <!-- Replace with actual menu details when provided -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 T voor Thee. Brewed with Heart.</p>
+    </footer>
+
+    <script>
+        function createParticles() {
+            const container = document.createElement('div');
+            container.className = 'particles';
+            document.body.appendChild(container);
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${8 + Math.random() * 8}s`;
+                container.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+
+        const sections = document.querySelectorAll('.corkboard-section');
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
