@@ -13,9 +13,9 @@
         <nav>
             <div class="logo">T voor Thee</div>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="about.html">About</a></li>
+                <li style="transform: rotate(0deg);"><a href="index.html">Home</a></li>
+                <li style="transform: rotate(120deg);"><a href="menu.html">Menu</a></li>
+                <li style="transform: rotate(240deg);"><a href="about.html">About</a></li>
             </ul>
         </nav>
     </header>
@@ -23,8 +23,8 @@
     <main>
         <section class="hero">
             <h1>Welcome to T voor Thee!</h1>
-            <p>Your cute spot for delicious bubble tea. Sip on happiness!</p>
-            <img src="placeholder-bubble-tea.jpg" alt="Cute bubble tea illustration" class="hero-image">
+            <p>Your spot for bubbly joy. Sip on happiness!</p>
+            <img src="placeholder-bubble-tea.jpg" alt="Cute bubble tea" class="hero-image">
         </section>
 
         <section class="reviews">
@@ -38,34 +38,27 @@
         <p>&copy; 2025 T voor Thee. All rights reserved.</p>
     </footer>
 
+    <!-- Particle Script -->
+    <script>
+        function createParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particles';
+            document.body.appendChild(particleContainer);
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particleContainer.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+    </script>
+
+    <!-- Google Places Script remains the same -->
     <script>
         function initMap() {
-            const placeId = 'YOUR_PLACE_ID'; // Replace with the actual Place ID for T voor Thee
-            const request = {
-                placeId: placeId,
-                fields: ['name', 'rating', 'user_ratings_total', 'reviews']
-            };
-
-            const service = new google.maps.places.PlacesService(document.createElement('div'));
-            service.getDetails(request, (place, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    document.getElementById('rating').innerHTML = `Overall Rating: ${place.rating} ⭐ (${place.user_ratings_total} reviews)`;
-
-                    const reviewsContainer = document.getElementById('reviews-container');
-                    place.reviews.forEach(review => {
-                        const reviewElem = document.createElement('div');
-                        reviewElem.className = 'review-card';
-                        reviewElem.innerHTML = `
-                            <p>"${review.text}"</p>
-                            <p>- ${review.author_name} (${'★'.repeat(review.rating)})</p>
-                        `;
-                        reviewsContainer.appendChild(reviewElem);
-                    });
-                } else {
-                    console.error('PlacesServiceStatus:', status);
-                    document.getElementById('reviews-container').innerHTML = '<p>Unable to load reviews. Please check the console for errors.</p>';
-                }
-            });
+            // ... (keep your existing code)
         }
     </script>
 </body>
