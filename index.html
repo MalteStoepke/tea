@@ -3,60 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T voor Thee - Bubble Tea Bliss</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>T voor Thee - Cozy Boba Bliss</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
 </head>
 <body>
     <header>
         <div class="logo">T voor Thee</div>
-        <nav class="boba-orb">
+        <nav class="scrapbook-nav">
             <ul>
-                <li style="transform: rotate(0deg) translate(150px) rotate(0deg);"><a href="index.html">Home</a></li>
-                <li style="transform: rotate(120deg) translate(150px) rotate(-120deg);"><a href="menu.html">Menu</a></li>
-                <li style="transform: rotate(240deg) translate(150px) rotate(-240deg);"><a href="about.html">About</a></li>
+                <li><a href="index.html" class="sticky-note">Home</a></li>
+                <li><a href="menu.html" class="sticky-note">Menu</a></li>
+                <li><a href="about.html" class="sticky-note">About</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="hero bubble-section" style="top: 10%; left: 10%;">
+        <section class="hero corkboard-section">
             <h1>Welcome to T voor Thee!</h1>
-            <p>Dive into bubbly bliss with our handcrafted bubble teas!</p>
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Boba Tea">
+            <p>Sip cozy vibes with our handcrafted bubble teas, made with love.</p>
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCA1MCAxNTAgNTAgMTAwQzUwIDUwIDEwMCAyMCAxMDAgMjBDMTUwIDIwIDIwMCA1MCAyMDAgMTAwQzIwMCAxNTAgMTUwIDE4MCAxMDAgMTgwWiIgZmlsbD0iI2ZmZDJiNSIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjEwIiBmaWxsPSIjNDgyNTAyIi8+PC9zdmc+" alt="Cozy Boba Tea">
         </section>
 
-        <section class="reviews bubble-section" style="top: 50%; right: 10%;">
-            <h2>What Our Sippers Say</h2>
+        <section class="reviews corkboard-section">
+            <h2>Our Sippers' Stories</h2>
             <div id="rating"></div>
             <div id="reviews-container"></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 T voor Thee. Sip the Future.</p>
+        <p>&copy; 2025 T voor Thee. Brewed with Heart.</p>
     </footer>
 
     <script>
-        // Particle Animation
+        // Particle Animation (Hearts for Coziness)
         function createParticles() {
             const container = document.createElement('div');
             container.className = 'particles';
             document.body.appendChild(container);
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 15}s`;
-                particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${8 + Math.random() * 8}s`;
                 container.appendChild(particle);
             }
         }
         window.addEventListener('load', createParticles);
 
-        // Scroll-Triggered Bubble Flux
-        const sections = document.querySelectorAll('.bubble-section');
+        // Scroll-Triggered Corkboard Animation
+        const sections = document.querySelectorAll('.corkboard-section');
         window.addEventListener('scroll', () => {
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
