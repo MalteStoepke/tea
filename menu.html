@@ -4,50 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - T voor Thee</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">T voor Thee</div>
+        <div class="logo">T voor Thee</div>
+        <nav class="boba-orb">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="about.html">About</a></li>
+                <li style="transform: rotate(0deg) translate(150px) rotate(0deg);"><a href="index.html">Home</a></li>
+                <li style="transform: rotate(120deg) translate(150px) rotate(-120deg);"><a href="menu.html">Menu</a></li>
+                <li style="transform: rotate(240deg) translate(150px) rotate(-240deg);"><a href="about.html">About</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Our Cute Bubble Tea Menu</h1>
-        <p>Explore our delightful flavors!</p>
-        <div class="menu-grid">
+        <section class="menu-grid bubble-section" style="top: 20%; left: 15%;">
+            <h1>Our Bubble Tea Menu</h1>
             <div class="menu-item">
-                <img src="placeholder-classic.jpg" alt="Classic Milk Tea">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Classic Milk Tea">
                 <h3>Classic Milk Tea</h3>
                 <a href="classic-milk-tea.html">View Details</a>
             </div>
             <div class="menu-item">
-                <img src="placeholder-taro.jpg" alt="Taro Bubble Tea">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Taro Bubble Tea">
                 <h3>Taro Bubble Tea</h3>
                 <a href="taro-bubble-tea.html">View Details</a>
             </div>
             <div class="menu-item">
-                <img src="placeholder-matcha.jpg" alt="Matcha Green Tea">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Matcha Green Tea">
                 <h3>Matcha Green Tea</h3>
                 <a href="matcha-green-tea.html">View Details</a>
             </div>
             <div class="menu-item">
-                <img src="placeholder-fruit.jpg" alt="Fruit Tea with Boba">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Fruit Tea with Boba">
                 <h3>Fruit Tea with Boba</h3>
                 <a href="fruit-tea-with-boba.html">View Details</a>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 T voor Thee. All rights reserved.</p>
+        <p>&copy; 2025 T voor Thee. Sip the Future.</p>
     </footer>
+
+    <script>
+        function createParticles() {
+            const container = document.createElement('div');
+            container.className = 'particles';
+            document.body.appendChild(container);
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+                container.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+
+        const sections = document.querySelectorAll('.bubble-section');
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
