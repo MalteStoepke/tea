@@ -1,27 +1,55 @@
 /* General Setup */
 body {
     font-family: 'Verdana', 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa 0%, #ffccbc 100%), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Frutiger Aero gradient with Lo-Fi grain */
-    color: #1a1a1a; /* Dark for contrast */
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffccbc 100%), url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgY8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Frutiger Aero gradient with Lo-Fi grain */
+    color: #1a1a1a;
     margin: 0;
     padding: 0;
     line-height: 1.7;
     overflow-x: hidden;
     text-shadow: 0 0 5px rgba(0,255,255,0.2); /* Aero glow */
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4='), auto; /* Boba pearl cursor */
+}
+
+/* Particle Animation Container */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iNSIgZmlsbD0iIzAwZmZmOSIvPjwvc3ZnPg=='); /* Cyan boba particle */
+    animation: float 10s infinite linear;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { transform: translate(100vw, -100vh); opacity: 0.3; }
 }
 
 /* Header */
 header {
     background: rgba(255, 255, 255, 0.1); /* Glassy Frutiger Aero */
-    backdrop-filter: blur(10px); /* Modern Chic glass effect */
+    backdrop-filter: blur(10px);
     padding: 1rem;
     border-bottom: 4px solid #ff6f61; /* Neobrutalist bold border */
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 0 20px rgba(0,255,255,0.3); /* Aero glow */
+    box-shadow: 0 0 20px rgba(0,255,255,0.3);
 }
 
+/* Navigation */
 nav {
     display: flex;
     justify-content: space-between;
@@ -48,7 +76,6 @@ nav {
     100% { transform: translate(0); }
 }
 
-/* Navigation Links */
 ul {
     list-style: none;
     display: flex;
@@ -60,18 +87,19 @@ a {
     color: #fff;
     font-weight: bold;
     padding: 0.8rem 1.5rem;
-    border: 3px solid #00fff9; /* Neobrutalist bold outline */
+    border: 3px solid #00fff9; /* Neobrutalist outline */
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2); /* Lo-Fi dark transparency */
+    background: rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(0,255,255,0.5); /* Aero glow */
+    box-shadow: 0 0 10px rgba(0,255,255,0.5);
+    transform-style: preserve-3d;
 }
 
 a:hover {
-    transform: scale(1.1) rotate(3deg); /* Playful tilt */
-    background: linear-gradient(45deg, #ff00ff, #00fff9); /* Vibrant gradient */
+    transform: scale(1.1) rotateX(10deg); /* 3D tilt */
+    background: linear-gradient(45deg, #ff00ff, #00fff9);
     box-shadow: 0 0 15px rgba(255,0,255,0.7);
     color: #1a1a1a;
 }
@@ -96,16 +124,18 @@ main {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
+    perspective: 1000px; /* Enable 3D transforms */
 }
 
 .hero {
     text-align: center;
     padding: 3rem;
-    background: rgba(255, 255, 255, 0.2); /* Glassy backdrop */
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
-    border: 5px solid #1a1a1a; /* Neobrutalist edge */
+    border: 5px solid #1a1a1a;
     border-radius: 15px;
     animation: pulse 3s infinite;
+    transform-style: preserve-3d;
 }
 
 @keyframes pulse {
@@ -116,7 +146,7 @@ main {
 
 h1, h2 {
     font-family: 'Courier New', monospace;
-    color: #ff00ff; /* Neon magenta for Frutiger Aero */
+    color: #ff00ff;
     text-transform: uppercase;
     letter-spacing: 3px;
     animation: neonFlicker 4s infinite;
@@ -149,10 +179,11 @@ h1::after, h2::after {
     border: 3px solid #1a1a1a;
     box-shadow: 0 0 15px rgba(0,255,255,0.5);
     transition: all 0.4s ease;
+    transform-style: preserve-3d;
 }
 
 .hero-image:hover {
-    transform: scale(1.15) rotate(-5deg);
+    transform: scale(1.15) rotateX(15deg); /* 3D flip effect */
     filter: brightness(1.2);
 }
 
@@ -170,11 +201,12 @@ h1::after, h2::after {
     box-shadow: 0 0 10px rgba(255,0,255,0.4);
     transition: all 0.3s ease;
     animation: glitchFade 1s ease-out;
+    transform-style: preserve-3d;
 }
 
 .review-card:hover {
-    transform: translate(5px, -5px);
-    box-shadow: 10px 10px 0 #ff6f61; /* Neobrutalist shadow */
+    transform: translate(5px, -5px) rotateY(10deg); /* 3D card tilt */
+    box-shadow: 10px 10px 0 #ff6f61;
 }
 
 @keyframes glitchFade {
@@ -186,7 +218,7 @@ h1::after, h2::after {
 footer {
     text-align: center;
     padding: 1.5rem;
-    background: linear-gradient(45deg, #ff6f61, #00fff9); /* Vibrant gradient */
+    background: linear-gradient(45deg, #ff6f61, #00fff9);
     color: #fff;
     font-family: 'Courier New', monospace;
     text-transform: uppercase;
@@ -210,10 +242,11 @@ footer {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .menu-item:hover {
-    transform: scale(1.1) skew(-2deg);
+    transform: scale(1.1) rotateY(180deg); /* 3D flip */
     box-shadow: 10px 10px 0 #ff00ff;
     background: rgba(255, 255, 255, 0.4);
 }
@@ -238,6 +271,7 @@ footer {
     border-radius: 15px;
     border: 2px solid #fff;
     transition: transform 0.3s ease;
+    backface-visibility: hidden;
 }
 
 .menu-item:hover img {
@@ -254,6 +288,7 @@ footer {
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(0,255,255,0.5);
     animation: pulse 3s infinite;
+    transform-style: preserve-3d;
 }
 
 .drink-details img {
@@ -266,7 +301,7 @@ footer {
 }
 
 .drink-details img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotateX(10deg); /* 3D tilt */
 }
 
 /* About Section */
@@ -279,6 +314,7 @@ footer {
     margin: 0 auto;
     box-shadow: 0 0 15px rgba(0,255,255,0.5);
     animation: pulse 3s infinite;
+    transform-style: preserve-3d;
 }
 
 p {
@@ -289,4 +325,13 @@ p {
     0% { transform: translateY(0); text-shadow: 0 0 5px rgba(0,255,255,0.3); }
     50% { transform: translateY(-2px); text-shadow: 0 0 10px rgba(0,255,255,0.5); }
     100% { transform: translateY(0); text-shadow: 0 0 5px rgba(0,255,255,0.3); }
+}
+
+/* JavaScript for Particles */
+:where(.hero, .reviews, .menu-grid, .drink-details, .about-section)::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
