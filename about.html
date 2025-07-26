@@ -20,7 +20,7 @@
     </header>
 
     <main>
-        <section class="about-section corkboard-section">
+        <section class="about-section corkboard-section" data-delay="0">
             <h1>About T voor Thee</h1>
             <p>We're a cozy bubble tea haven, brewing joy with every sip.</p>
             <h2>Our Story</h2>
@@ -35,7 +35,7 @@
             </ul>
             <p>Email: info@tvoortheegroningen.nl</p>
             <p>Phone: +31 (contact via Instagram)</p>
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCA1MCAxNTAgNTAgMTAwQzUwIDUwIDEwMCAyMCAxMDAgMjBDMTUwIDIwIDIwMCA1MCAyMDAgMTAwQzIwMCAxNTAgMTUwIDE4MCAxMDAgMTgwWiIgZmlsbD0iI2ZmZDJiNSIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjEwIiBmaWxsPSIjNDgyNTAyIi8+PHBhdGggZD0iTTEwMCAyME0xMDAgMTgwIiBzdHJva2U9IiM0ODI1MDIiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==" alt="Cozy Shop">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCA1MCAxNTAgNTAgMTAwQzUwIDUwIDEwMCAyMCAxMDAgMjBDMTUwIDIwIDIwMCA1MCAyMDAgMTAwQzIwMCAxNTAgMTUwIDE4MCAxMDAgMTgwWiIgZmlsbD0iI2ZmZDJiNSIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjEwIiBmaWxsPSIjNDgyNTAyIi8+PHBhdGggZD0iTTEwMCAyME0xMDAgMTgwIiBzdHJva2U9IiM0ODI1MDIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0xMjAgMTQwTDgwIDE2MCIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=" alt="Cozy Shop">
         </section>
     </main>
 
@@ -59,14 +59,24 @@
         }
         window.addEventListener('load', createParticles);
 
-        const sections = document.querySelectorAll('.corkboard-section');
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.corkboard-section');
+            sections.forEach((section, index) => {
+                const delay = parseFloat(section.getAttribute('data-delay') || 0);
+                setTimeout(() => {
+                    section.classList.add('loaded');
+                }, delay * 1000);
+            });
+        });
+
         window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.corkboard-section');
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-                    section.classList.add('active');
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('scroll-active');
                 } else {
-                    section.classList.remove('active');
+                    section.classList.remove('scroll-active');
                 }
             });
         });
