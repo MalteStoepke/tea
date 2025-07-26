@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - T voor Thee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">T voor Thee</div>
+        <nav class="boba-orb">
+            <ul>
+                <li style="transform: rotate(0deg) translate(150px) rotate(0deg);"><a href="index.html">Home</a></li>
+                <li style="transform: rotate(120deg) translate(150px) rotate(-120deg);"><a href="menu.html">Menu</a></li>
+                <li style="transform: rotate(240deg) translate(150px) rotate(-240deg);"><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-section bubble-section" style="top: 15%; left: 20%;">
+            <h1>About T voor Thee</h1>
+            <p>We're a charming bubble tea shop dedicated to bringing joy through every sip! Our teas are made with love and the freshest ingredients, focusing on authentic Taiwanese flavors.</p>
+            <h2>Our Story</h2>
+            <p>Founded in 2025, T voor Thee started as a passion project from a hotel life in Hong Kong to bubble tea dreams in Groningen. We brew real tea, use Taiwanese pearls, and craft each drink with balance, texture, and heart.</p>
+            <h2>Visit Us</h2>
+            <p>Address: Zwanestraat 29, 9712 CJ Groningen, Netherlands</p>
+            <p>Hours:</p>
+            <ul>
+                <li>Monday: 11:00 - 16:00</li>
+                <li>Tuesday - Wednesday: 11:00 - 19:00</li>
+                <li>Thursday - Sunday: 11:00 - 19:00</li>
+            </ul>
+            <p>Email: info@tvoortheegroningen.nl</p>
+            <p>Phone: +31 (contact via Instagram or website)</p>
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjMDBmZmY5Ii8+PC9zdmc+" alt="Shop Interior">
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 T voor Thee. Sip the Future.</p>
+    </footer>
+
+    <script>
+        function createParticles() {
+            const container = document.createElement('div');
+            container.className = 'particles';
+            document.body.appendChild(container);
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+                container.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+
+        const sections = document.querySelectorAll('.bubble-section');
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
