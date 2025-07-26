@@ -1,141 +1,117 @@
-/* Boba Flux Pulse: A 2025 trendsetter fusing Neobrutalism's raw, chunky borders with Lo-Fi's Y2K grit. Central rotating 'Boba Orb' nav with pulsing pearls. Asymmetrical bubble sections flux into view with 3D tilts and glitchy Lo-Fi textures. Subtle neon titles flicker like arcade signs. Boba cursor with spark trails and interactive floating particles pull Gen Z/Millennials into a boba tea dreamscape. */
+/* Boba Cozy Brut: A 2025 cozy Lo-Fi masterpiece with Neobrutalist touches. Warm paper textures, hand-drawn doodles, and earthy tones create a nostalgic scrapbook vibe. Chunky, irregular borders and offset shadows add raw charm. Wholesome animations (wiggles, bounces, soft glows) make it inviting for Gen Z/Millennials. Central scrapbook nav with sticky notes replaces boring top bars. Corkboard sections pin in with scroll-triggered fades, like flipping a cozy journal. */
 
-/* General Setup – Lo-Fi Grain + Dopamine Neons */
+/* General Setup – Cozy Lo-Fi with Warm Textures */
 body {
-    font-family: 'Press Start 2P', monospace; /* Y2K arcade font */
-    background: linear-gradient(135deg, #ff6f61 0%, #00fff9 100%), 
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Lo-Fi grain texture */
-    color: #1a1a1a;
+    font-family: 'Annie Use Your Telescope', cursive; /* Handwritten cozy font */
+    background: #f7e4c8 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Creamy beige with Lo-Fi paper grain */
+    color: #482502; /* Rich coffee brown */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     overflow-y: scroll;
-    min-height: 300vh; /* Allow scrolling for flux */
-    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxMCIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjZmYwMGZmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIzIiBmaWxsPSIjZmYwMGZmIi8+PC9zdmc+'), auto; /* Boba cursor with neon spark */
-    animation: fluxBg 12s infinite alternate ease-in-out;
+    min-height: 200vh; /* Allow scrolling for corkboard */
+    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTYgMjhDMTYgMjggOCAyNCA4IDE2QzggNCAxNiAwIDE2IDBDMjQgMCAzMiA0IDMyIDE2QzMyIDI0IDI0IDI4IDE2IDI4WiIgZmlsbD0iIzQ4MjUwMiIgc3Ryb2tlPSIjZmZiY2E5IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTIgMjBjNC41IDAgOC0zLjUgOC04cy0zLjUtOC04LTgtOCAzLjUtOCA4IDMuNSA4IDggOHoiIGZpbGw9IiNmZmZmZmUiIHN0cm9rZT0iI2ZmODk2MCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+'), auto; /* Boba cursor with heart */
 }
 
-@keyframes fluxBg {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-}
-
-/* Logo – Top-Left, Glitchy Neon */
+/* Logo – Top-Left, Hand-Drawn Wiggle */
 .logo {
     position: fixed;
     top: 20px;
     left: 20px;
-    font-size: 2rem;
-    color: #ff00ff; /* Neon magenta */
-    text-shadow: 0 0 4px #ff00ff; /* Subtle, readable neon */
-    animation: glitchLogo 2s infinite;
+    font-family: 'VT323', monospace;
+    font-size: 2.5rem;
+    color: #482502;
+    text-shadow: 0 0 5px #ffbca9; /* Soft peachy glow */
+    animation: wiggle 2s infinite;
     z-index: 101;
 }
 
-@keyframes glitchLogo {
-    0% { transform: translate(0); }
-    2% { transform: translate(-2px, 2px); text-shadow: 0 0 4px #00fff9; }
-    4% { transform: translate(2px, -2px); text-shadow: 0 0 4px #ff6f61; }
-    6% { transform: translate(0); text-shadow: 0 0 4px #ff00ff; }
-    100% { transform: translate(0); }
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
 }
 
-/* Boba Orb Nav – Central, Floating Hub */
-.boba-orb {
+/* Scrapbook Nav – Sticky Notes with Bounce */
+.scrapbook-nav {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    animation: orbPulse 8s infinite alternate;
+    z-index: 100;
 }
 
-@keyframes orbPulse {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    100% { transform: translate(-50%, -50%) scale(1.1); }
-}
-
-.boba-orb ul {
+.scrapbook-nav ul {
     list-style: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    animation: bubbleRotate 20s linear infinite;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.boba-orb li {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    background: rgba(0, 0, 0, 0.7); /* Lo-Fi dark bubble */
-    border-radius: 50%;
-    border: 5px solid #1a1a1a; /* Neobrutalist */
-    box-shadow: 5px 5px 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
+.scrapbook-nav li {
+    transform: rotate(-5deg); /* Neobrutalist tilt */
+}
+
+.scrapbook-nav .sticky-note {
+    display: block;
+    padding: 1rem;
+    background: #ffeca1; /* Warm yellow sticky note */
+    border: 4px solid #482502; /* Chunky brutalist border */
+    box-shadow: 5px 5px 0 #d88c3e; /* Offset shadow */
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 1.2rem;
+    color: #482502;
+    text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.boba-orb li:hover {
-    transform: scale(1.5) rotate(10deg); /* Bubble pop */
-    box-shadow: 0 0 20px #ff6f61; /* Dopamine coral */
+.scrapbook-nav .sticky-note:hover {
+    transform: scale(1.1) rotate(5deg); /* Wholesome bounce */
+    box-shadow: 8px 8px 0 #ffbca9; /* Peachy glow */
 }
 
-.boba-orb li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    font-size: 0.9rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-@keyframes bubbleRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Main Content – Bubble Sections with 3D Flux */
+/* Main Content – Corkboard Sections with Polaroid Vibes */
 main {
     position: relative;
-    perspective: 1200px;
+    perspective: 1000px;
 }
 
-.bubble-section {
-    position: absolute;
+.corkboard-section {
+    position: relative;
+    margin: 2rem auto;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.3); /* Glassy Lo-Fi */
-    border: 6px solid #1a1a1a; /* Brutalist */
-    border-radius: 50%; /* Bubble shape */
+    background: #f7d9b5; /* Warm polaroid paper */
+    border: 6px solid #482502; /* Neobrutalist chunky */
+    box-shadow: 10px 10px 0 #d88c3e; /* Offset shadow */
+    border-radius: 10px;
+    max-width: 600px;
+    transform: rotate(-3deg); /* Asymmetrical cozy tilt */
     opacity: 0;
-    transform: scale(0.5) rotateY(45deg);
+    transform-origin: center;
     transition: all 0.8s ease-out;
-    box-shadow: 10px 10px 0 #ff6f61; /* Neobrutalist offset */
-    max-width: 500px;
 }
 
-.bubble-section.active {
+.corkboard-section.active {
     opacity: 1;
-    transform: scale(1) rotateY(0deg);
+    transform: rotate(0deg) scale(1);
 }
 
 img {
-    max-width: 250px;
-    border-radius: 30px;
-    border: 4px solid #1a1a1a;
+    max-width: 200px;
+    border: 4px solid #482502;
+    background: #fff; /* Polaroid frame */
+    padding: 10px;
+    border-radius: 5px;
+    transform: rotate(3deg);
     transition: transform 0.4s ease;
 }
 
 img:hover {
-    transform: scale(1.2) rotateX(10deg); /* 3D pop */
+    transform: rotate(-3deg) scale(1.1); /* Wholesome wiggle */
 }
 
-/* Floating Boba Particles – Interactive */
+/* Floating Heart Particles – Cozy Microinteractions */
 .particles {
     position: fixed;
     top: 0;
@@ -148,139 +124,124 @@ img:hover {
 
 .particle {
     position: absolute;
-    width: 25px;
-    height: 25px;
-    background: radial-gradient(circle, #000 50%, #ff00ff 100%); /* Boba with neon rim */
-    border-radius: 50%;
-    box-shadow: 0 0 15px #00fff9; /* Cyan glow */
-    animation: bobaFloat 15s infinite linear;
-    pointer-events: auto;
+    width: 20px;
+    height: 20px;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAgMkM4IDAgNiA0IDAgNEs0IDkgMTAgMTVTMTYgOSAyMCA0UzE4IDAgMTAgMloiIGZpbGw9IiNmZmI4YTkiLz48L3N2Zz4='); /* Tiny heart */
+    animation: heartFloat 12s infinite linear;
 }
 
 .particle:hover {
-    transform: scale(1.3); /* Pop on hover */
+    transform: scale(1.2); /* Gentle pop */
 }
 
-@keyframes bobaFloat {
-    0% { transform: translate(0, 0); opacity: 0.4; }
-    50% { transform: translate(calc(50vw - 50%), -50vh); opacity: 1; }
-    100% { transform: translate(calc(100vw - 100%), -100vh); opacity: 0.4; }
+@keyframes heartFloat {
+    0% { transform: translate(0, 0); opacity: 0.3; }
+    50% { transform: translate(calc(50vw - 50%), -50vh); opacity: 0.8; }
+    100% { transform: translate(calc(100vw - 100%), -100vh); opacity: 0.3; }
 }
 
-/* Titles – Readable Neon Glow */
+/* Titles – Soft Glow with Handwritten Charm */
 h1, h2 {
-    font-family: 'Press Start 2P', monospace;
+    font-family: 'VT323', monospace;
     font-size: 2rem;
-    color: #ff00ff;
-    text-shadow: 0 0 4px #ff00ff; /* Subtle, readable neon */
-    animation: subtleNeon 4s infinite alternate;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    color: #482502;
+    text-shadow: 0 0 5px #ffbca9; /* Soft peachy glow */
+    animation: softGlow 3s infinite alternate;
 }
 
-@keyframes subtleNeon {
-    0% { text-shadow: 0 0 4px #ff00ff; }
-    100% { text-shadow: 0 0 7px #ff00ff; }
+@keyframes softGlow {
+    0% { text-shadow: 0 0 5px #ffbca9; }
+    100% { text-shadow: 0 0 8px #ffbca9; }
 }
 
 p, ul li {
-    font-family: 'Poppins', sans-serif; /* Readable body text */
-    animation: textWave 6s infinite;
+    font-family: 'Annie Use Your Telescope', cursive;
+    font-size: 1.2rem;
+    color: #482502;
+    animation: textBob 4s infinite;
 }
 
-@keyframes textWave {
-    0% { transform: translateY(0); text-shadow: 0 0 3px rgba(0,255,255,0.3); }
-    50% { transform: translateY(-3px); text-shadow: 0 0 6px rgba(0,255,255,0.5); }
-    100% { transform: translateY(0); text-shadow: 0 0 3px rgba(0,255,255,0.3); }
+@keyframes textBob {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
 }
 
-/* Menu Items – 3D Brutalist with Lo-Fi Grit */
+/* Menu Items – Polaroid Cards with Brutalist Edges */
 .menu-item {
-    background: rgba(0, 0, 0, 0.4); /* Lo-Fi dark */
-    border: 6px solid #1a1a1a;
-    box-shadow: 8px 8px 0 #ff6f61;
+    background: #fff; /* Polaroid white */
+    border: 5px solid #482502;
+    box-shadow: 8px 8px 0 #d88c3e;
     padding: 1.5rem;
-    border-radius: 20px 0; /* Asymmetrical */
-    transform-style: preserve-3d;
-    transition: transform 0.4s ease;
-    margin: 1rem;
+    border-radius: 5px;
+    transform: rotate(2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-item:hover {
-    transform: rotateX(10deg) rotateY(10deg); /* 3D tilt */
-    box-shadow: 12px 12px 0 #00fff9; /* Neon shift */
+    transform: rotate(-2deg) scale(1.05);
+    box-shadow: 10px 10px 0 #ffbca9; /* Peachy glow */
 }
 
 .menu-item img {
-    max-width: 200px;
-    border-radius: 15px;
-    border: 3px solid #1a1a1a;
+    max-width: 150px;
+}
+
+.menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* Reviews – Handwritten Notes on Corkboard */
+.review-card {
+    background: #ffeca1; /* Sticky note yellow */
+    border: 4px dashed #482502; /* Playful brutalist */
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0 #d88c3e;
+    transform: rotate(-2deg);
     transition: transform 0.3s ease;
 }
 
-.menu-item:hover img {
-    transform: scale(1.1) rotate(5deg);
-}
-
-/* Reviews – Glitchy Lo-Fi Cards */
-.review-card {
-    background: rgba(255, 255, 255, 0.2);
-    border: 5px dashed #00fff9; /* Playful brutalist */
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 5px 5px 0 #ff6f61;
-    animation: glitchFade 1.5s ease-out;
-    transition: all 0.3s ease;
-}
-
 .review-card:hover {
-    transform: translate(5px, -5px);
-    box-shadow: 10px 10px 0 #00fff9;
+    transform: rotate(2deg) scale(1.05);
+    box-shadow: 8px 8px 0 #ffbca9;
 }
 
-@keyframes glitchFade {
-    0% { opacity: 0; transform: skew(5deg); }
-    100% { opacity: 1; transform: skew(0deg); }
-}
-
-/* Drink Details & About – Bubble Flux */
+/* Drink Details & About – Cozy Polaroid Sections */
 .drink-details, .about-section {
-    background: rgba(255, 255, 255, 0.3);
-    border: 6px solid #1a1a1a;
-    border-radius: 50%;
+    background: #f7d9b5;
+    border: 6px solid #482502;
+    box-shadow: 10px 10px 0 #d88c3e;
+    border-radius: 10px;
     padding: 2rem;
-    box-shadow: 10px 10px 0 #ff6f61;
+    max-width: 600px;
+    transform: rotate(-3deg);
     transition: all 0.8s ease-out;
-    max-width: 500px;
 }
 
 .drink-details img, .about-section img {
-    max-width: 300px;
-    border-radius: 20px;
-    border: 3px solid #1a1a1a;
-    transition: transform 0.4s ease;
+    max-width: 200px;
 }
 
-.drink-details img:hover, .about-section img:hover {
-    transform: scale(1.1) rotateX(10deg);
-}
-
-/* Footer – Retro Arcade Vibes */
+/* Footer – Warm, Retro Tape */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(45deg, #ff6f61, #00fff9);
+    background: #d88c3e; /* Warm orange */
     text-align: center;
-    border-top: 5px solid #1a1a1a;
-    font-family: 'Press Start 2P', monospace;
+    border-top: 5px solid #482502;
+    font-family: 'VT323', monospace;
     color: #fff;
-    animation: waveFlux 5s infinite;
+    animation: tapeWiggle 3s infinite;
 }
 
-@keyframes waveFlux {
-    0% { transform: skew(0deg); }
-    50% { transform: skew(2deg); }
-    100% { transform: skew(0deg); }
+@keyframes tapeWiggle {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
 }
