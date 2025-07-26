@@ -1,19 +1,19 @@
-/* Boba Cozy Brut: A 2025 cozy Lo-Fi masterpiece with Neobrutalist touches. Warm paper textures, hand-drawn doodles, and earthy tones create a nostalgic scrapbook vibe. Chunky, irregular borders and offset shadows add raw charm. Wholesome animations (wiggles, bounces, soft glows) make it inviting for Gen Z/Millennials. Central scrapbook nav with sticky notes replaces boring top bars. Corkboard sections pin in with scroll-triggered fades, like flipping a cozy journal. */
+/* Boba Cozy Brut: A cozy Lo-Fi masterpiece with Neobrutalist touches. Warm paper textures (#f7e4c8), handwritten fonts (Annie Use Your Telescope, VT323), and earthy tones (#482502, #d88c3e, #ffbca9) create a nostalgic scrapbook vibe. Chunky borders and offset shadows add raw charm. Wholesome animations (wiggles, bounces, heart particles, soft glows) make it inviting for Gen Z/Millennials. Central scrapbook nav with sticky notes, corkboard sections like pinned polaroids. */
 
 /* General Setup – Cozy Lo-Fi with Warm Textures */
 body {
-    font-family: 'Annie Use Your Telescope', cursive; /* Handwritten cozy font */
-    background: #f7e4c8 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Creamy beige with Lo-Fi paper grain */
-    color: #482502; /* Rich coffee brown */
+    font-family: 'Annie Use Your Telescope', cursive;
+    background: #f7e4c8 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Creamy beige with paper grain */
+    color: #482502; /* Coffee brown */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     overflow-y: scroll;
-    min-height: 200vh; /* Allow scrolling for corkboard */
+    min-height: 200vh;
     cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTYgMjhDMTYgMjggOCAyNCA4IDE2QzggNCAxNiAwIDE2IDBDMjQgMCAzMiA0IDMyIDE2QzMyIDI0IDI0IDI4IDE2IDI4WiIgZmlsbD0iIzQ4MjUwMiIgc3Ryb2tlPSIjZmZiY2E5IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTIgMjBjNC41IDAgOC0zLjUgOC04cy0zLjUtOC04LTgtOCAzLjUtOCA4IDMuNSA4IDggOHoiIGZpbGw9IiNmZmZmZmUiIHN0cm9rZT0iI2ZmODk2MCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+'), auto; /* Boba cursor with heart */
 }
 
-/* Logo – Top-Left, Hand-Drawn Wiggle */
+/* Logo – Top-Left, Wiggly */
 .logo {
     position: fixed;
     top: 20px;
@@ -33,7 +33,7 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-/* Scrapbook Nav – Sticky Notes with Bounce */
+/* Scrapbook Nav – Sticky Notes */
 .scrapbook-nav {
     position: fixed;
     top: 50%;
@@ -50,15 +50,15 @@ body {
 }
 
 .scrapbook-nav li {
-    transform: rotate(-5deg); /* Neobrutalist tilt */
+    transform: rotate(-5deg);
 }
 
 .scrapbook-nav .sticky-note {
     display: block;
     padding: 1rem;
     background: #ffeca1; /* Warm yellow sticky note */
-    border: 4px solid #482502; /* Chunky brutalist border */
-    box-shadow: 5px 5px 0 #d88c3e; /* Offset shadow */
+    border: 4px solid #482502;
+    box-shadow: 5px 5px 0 #d88c3e;
     font-family: 'Annie Use Your Telescope', cursive;
     font-size: 1.2rem;
     color: #482502;
@@ -67,11 +67,11 @@ body {
 }
 
 .scrapbook-nav .sticky-note:hover {
-    transform: scale(1.1) rotate(5deg); /* Wholesome bounce */
-    box-shadow: 8px 8px 0 #ffbca9; /* Peachy glow */
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 8px 8px 0 #ffbca9;
 }
 
-/* Main Content – Corkboard Sections with Polaroid Vibes */
+/* Main Content – Corkboard Sections */
 main {
     position: relative;
     perspective: 1000px;
@@ -81,12 +81,12 @@ main {
     position: relative;
     margin: 2rem auto;
     padding: 2rem;
-    background: #f7d9b5; /* Warm polaroid paper */
-    border: 6px solid #482502; /* Neobrutalist chunky */
-    box-shadow: 10px 10px 0 #d88c3e; /* Offset shadow */
+    background: #f7d9b5; /* Polaroid paper */
+    border: 6px solid #482502;
+    box-shadow: 10px 10px 0 #d88c3e;
     border-radius: 10px;
     max-width: 600px;
-    transform: rotate(-3deg); /* Asymmetrical cozy tilt */
+    transform: rotate(-3deg);
     opacity: 0;
     transform-origin: center;
     transition: all 0.8s ease-out;
@@ -100,7 +100,7 @@ main {
 img {
     max-width: 200px;
     border: 4px solid #482502;
-    background: #fff; /* Polaroid frame */
+    background: #fff;
     padding: 10px;
     border-radius: 5px;
     transform: rotate(3deg);
@@ -108,10 +108,10 @@ img {
 }
 
 img:hover {
-    transform: rotate(-3deg) scale(1.1); /* Wholesome wiggle */
+    transform: rotate(-3deg) scale(1.1);
 }
 
-/* Floating Heart Particles – Cozy Microinteractions */
+/* Heart Particles */
 .particles {
     position: fixed;
     top: 0;
@@ -126,12 +126,12 @@ img:hover {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAgMkM4IDAgNiA0IDAgNEs0IDkgMTAgMTVTMTYgOSAyMCA0UzE4IDAgMTAgMloiIGZpbGw9IiNmZmI4YTkiLz48L3N2Zz4='); /* Tiny heart */
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTAgMkM4IDAgNiA0IDAgNEs0IDkgMTAgMTVTMTYgOSAyMCA0UzE4IDAgMTAgMloiIGZpbGw9IiNmZmI4YTkiLz48L3N2Zz4='); /* Peachy heart */
     animation: heartFloat 12s infinite linear;
 }
 
 .particle:hover {
-    transform: scale(1.2); /* Gentle pop */
+    transform: scale(1.2);
 }
 
 @keyframes heartFloat {
@@ -140,12 +140,12 @@ img:hover {
     100% { transform: translate(calc(100vw - 100%), -100vh); opacity: 0.3; }
 }
 
-/* Titles – Soft Glow with Handwritten Charm */
+/* Titles */
 h1, h2 {
     font-family: 'VT323', monospace;
     font-size: 2rem;
     color: #482502;
-    text-shadow: 0 0 5px #ffbca9; /* Soft peachy glow */
+    text-shadow: 0 0 5px #ffbca9;
     animation: softGlow 3s infinite alternate;
 }
 
@@ -167,9 +167,9 @@ p, ul li {
     100% { transform: translateY(0); }
 }
 
-/* Menu Items – Polaroid Cards with Brutalist Edges */
+/* Menu Items */
 .menu-item {
-    background: #fff; /* Polaroid white */
+    background: #fff;
     border: 5px solid #482502;
     box-shadow: 8px 8px 0 #d88c3e;
     padding: 1.5rem;
@@ -180,7 +180,7 @@ p, ul li {
 
 .menu-item:hover {
     transform: rotate(-2deg) scale(1.05);
-    box-shadow: 10px 10px 0 #ffbca9; /* Peachy glow */
+    box-shadow: 10px 10px 0 #ffbca9;
 }
 
 .menu-item img {
@@ -194,10 +194,10 @@ p, ul li {
     justify-content: center;
 }
 
-/* Reviews – Handwritten Notes on Corkboard */
+/* Reviews */
 .review-card {
-    background: #ffeca1; /* Sticky note yellow */
-    border: 4px dashed #482502; /* Playful brutalist */
+    background: #ffeca1;
+    border: 4px dashed #482502;
     padding: 1.5rem;
     border-radius: 5px;
     box-shadow: 5px 5px 0 #d88c3e;
@@ -210,7 +210,7 @@ p, ul li {
     box-shadow: 8px 8px 0 #ffbca9;
 }
 
-/* Drink Details & About – Cozy Polaroid Sections */
+/* Drink Details & About */
 .drink-details, .about-section {
     background: #f7d9b5;
     border: 6px solid #482502;
@@ -226,13 +226,13 @@ p, ul li {
     max-width: 200px;
 }
 
-/* Footer – Warm, Retro Tape */
+/* Footer */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     padding: 1rem;
-    background: #d88c3e; /* Warm orange */
+    background: #d88c3e;
     text-align: center;
     border-top: 5px solid #482502;
     font-family: 'VT323', monospace;
