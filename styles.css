@@ -1,6 +1,6 @@
-/* Boba Cozy Brut: A cozy Lo-Fi masterpiece with Neobrutalist touches. Warm paper textures (#f7e4c8), handwritten fonts (Annie Use Your Telescope, VT323), and earthy tones (#482502, #d88c3e, #ffbca9) create a nostalgic scrapbook vibe. Chunky borders and offset shadows add raw charm. Wholesome animations (wiggles, bounces, heart particles, soft glows) make it inviting for Gen Z/Millennials. Central scrapbook nav with sticky notes, corkboard sections like pinned polaroids. */
+/* Boba Cozy Brut: A cozy Lo-Fi masterpiece with Neobrutalist touches. Warm paper texture (#f7e4c8), handwritten fonts (Annie Use Your Telescope, VT323), and earthy tones (#482502, #d88c3e, #ffbca9) evoke a nostalgic scrapbook vibe. Chunky borders and offset shadows add raw charm. Wholesome animations (wiggles, bounces, heart particles, soft glows) create an inviting feel. Left sidebar nav with sticky notes, corkboard sections like pinned polaroids, all loaded with staggered animations and scroll enhancements. */
 
-/* General Setup – Cozy Lo-Fi with Warm Textures */
+/* General Setup – Cozy Lo-Fi */
 body {
     font-family: 'Annie Use Your Telescope', cursive;
     background: #f7e4c8 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYGDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat; /* Creamy beige with paper grain */
@@ -33,13 +33,14 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-/* Scrapbook Nav – Sticky Notes */
+/* Scrapbook Nav – Left Sidebar Sticky Notes */
 .scrapbook-nav {
     position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 20px;
+    transform: translateY(-50%);
     z-index: 100;
+    width: 150px;
 }
 
 .scrapbook-nav ul {
@@ -64,6 +65,7 @@ body {
     color: #482502;
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
 .scrapbook-nav .sticky-note:hover {
@@ -74,6 +76,7 @@ body {
 /* Main Content – Corkboard Sections */
 main {
     position: relative;
+    padding-left: 200px; /* Space for nav */
     perspective: 1000px;
 }
 
@@ -92,9 +95,14 @@ main {
     transition: all 0.8s ease-out;
 }
 
-.corkboard-section.active {
+.corkboard-section.loaded {
     opacity: 1;
     transform: rotate(0deg) scale(1);
+}
+
+.corkboard-section.scroll-active {
+    box-shadow: 12px 12px 0 #ffbca9; /* Scroll enhancement */
+    transform: rotate(2deg) scale(1.02);
 }
 
 img {
