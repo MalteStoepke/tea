@@ -1,104 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>T voor Thee - Cozy Boba Bliss</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DreamSip Bubble Tea</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">T voor Thee</div>
-        <nav class="scrapbook-nav">
-            <ul>
-                <li><a href="index.html" class="sticky-note">Home</a></li>
-                <li><a href="menu.html" class="sticky-note">Menu</a></li>
-                <li><a href="about.html" class="sticky-note">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero corkboard-section" data-delay="0">
-            <h1>Welcome to T voor Thee!</h1>
-            <p>Sip cozy vibes with our handcrafted bubble teas, made with love.</p>
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAxODBDMTAwIDE4MCA1MCAxNTAgNTAgMTAwQzUwIDUwIDEwMCAyMCAxMDAgMjBDMTUwIDIwIDIwMCA1MCAyMDAgMTAwQzIwMCAxNTAgMTUwIDE4MCAxMDAgMTgwWiIgZmlsbD0iI2ZmZDJiNSIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjUiLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxNTAiIHI9IjEwIiBmaWxsPSIjNDgyNTAyIi8+PHBhdGggZD0iTTEwMCAyME0xMDAgMTgwIiBzdHJva2U9IiM0ODI1MDIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0xMjAgMTQwTDgwIDE2MCIgc3Ryb2tlPSIjNDgyNTAyIiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=" alt="Cozy Boba Tea">
-        </section>
-
-        <section class="reviews corkboard-section" data-delay="0.2">
-            <h2>Our Sippers' Stories</h2>
-            <div id="rating"></div>
-            <div id="reviews-container"></div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 T voor Thee. Brewed with Heart.</p>
-    </footer>
-
-    <script>
-        // Particle Animation (Hearts)
-        function createParticles() {
-            const container = document.createElement('div');
-            container.className = 'particles';
-            document.body.appendChild(container);
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-                particle.style.animationDuration = `${8 + Math.random() * 8}s`;
-                container.appendChild(particle);
-            }
-        }
-        window.addEventListener('load', createParticles);
-
-        // Staggered Load Animation + Scroll Enhancements
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.corkboard-section');
-            sections.forEach((section, index) => {
-                const delay = parseFloat(section.getAttribute('data-delay') || 0);
-                setTimeout(() => {
-                    section.classList.add('loaded');
-                }, delay * 1000);
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.corkboard-section');
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    section.classList.add('scroll-active');
-                } else {
-                    section.classList.remove('scroll-active');
-                }
-            });
-        });
-
-        // Google Places API
-        function initMap() {
-            const placeId = 'YOUR_PLACE_ID';
-            const request = { placeId: placeId, fields: ['name', 'rating', 'user_ratings_total', 'reviews'] };
-            const service = new google.maps.places.PlacesService(document.createElement('div'));
-            service.getDetails(request, (place, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    document.getElementById('rating').innerHTML = `Overall Rating: ${place.rating} ⭐ (${place.user_ratings_total} reviews)`;
-                    const reviewsContainer = document.getElementById('reviews-container');
-                    place.reviews.forEach(review => {
-                        const reviewElem = document.createElement('div');
-                        reviewElem.className = 'review-card';
-                        reviewElem.innerHTML = `<p>"${review.text}"</p><p>- ${review.author_name} (${'★'.repeat(review.rating)})</p>`;
-                        reviewsContainer.appendChild(reviewElem);
-                    });
-                } else {
-                    console.error('PlacesServiceStatus:', status);
-                    document.getElementById('reviews-container').innerHTML = '<p>Unable to load reviews.</p>';
-                }
-            });
-        }
-    </script>
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <h1>DreamSip Bubble Tea</h1>
+    <p>A surreal journey through flavor</p>
+    <a href="classic-milk-tea.html" class="cta-button">Explore Our Teas</a>
+  </div>
+  <section class="menu-teaser">
+    <h2>Our Creations</h2>
+    <div class="tea-card">
+      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Classic Milk Tea">
+      <h3>Classic Milk Tea</h3>
+      <p>A timeless blend of rich tea and creamy bliss.</p>
+      <a href="classic-milk-tea.html">Discover</a>
+    </div>
+  </section>
+  <script>
+    gsap.from(".hero h1", { opacity: 0, y: 100, duration: 1.5, ease: "power3.out" });
+    gsap.from(".hero p", { opacity: 0, y: 50, duration: 1.5, delay: 0.5, ease: "power3.out" });
+    gsap.from(".cta-button", { opacity: 0, scale: 0.5, duration: 1, delay: 1, ease: "elastic.out(1, 0.3)" });
+    gsap.from(".tea-card", { opacity: 0, x: -200, duration: 1.5, delay: 1.5, ease: "power3.out" });
+  </script>
 </body>
 </html>
