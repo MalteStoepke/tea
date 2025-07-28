@@ -1,275 +1,125 @@
-/* General */
 body {
-    font-family: 'Annie Use Your Telescope', cursive;
-    background: linear-gradient(135deg, #f7e4c8 0%, #ffe4d1 50%, #ffcca5 100%) url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAB9JREFUGFdjZGBgYPh//v37/38DAwMGBgYMDAz8//8/AL6hC2l9zW8BAAAAAElFTkSuQmCC') repeat;
-    color: #482502;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    min-height: 200vh;
-    cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTYgMjhDMTYgMjggOCAyNCA4IDE2QzggNCAxNiAwIDE2IDBDMjQgMCAzMiA0IDMyIDE2QzMyIDI0IDI0IDI4IDE2IDI4WiIgZmlsbD0iIzQ4MjUwMiIgc3Ryb2tlPSIjZmZiY2E5IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTIgMjBjNC41IDAgOC0zLjUgOC04cy0zLjUtOC04LTgtOCAzLjUtOCA4IDMuNSA4IDggOHoiIGZpbGw9IiNmZmZmZmUiIHN0cm9rZT0iI2ZmODk2MCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+'), auto;
-    perspective: 1200px;
-    animation: subtlePulse 10s infinite ease-in-out;
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #1a0933 0%, #3a1c71 100%);
+  color: #fff;
+  overflow-x: hidden;
 }
 
-@keyframes subtlePulse {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1608030804530-7e4e46b466ae') no-repeat center/cover;
+  animation: pulse 10s infinite alternate;
 }
 
-/* Logo – Floating, Ethereal */
-.logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-family: 'VT323', monospace;
-    font-size: 2.8rem;
-    color: #482502;
-    text-shadow: 0 0 10px #ffbca9, 0 0 20px #ff8960;
-    animation: floatGlow 4s infinite ease-in-out;
-    z-index: 101;
-    transform-style: preserve-3d;
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.3), rgba(138, 43, 226, 0.5));
+  mix-blend-mode: overlay;
 }
 
-@keyframes floatGlow {
-    0% { transform: translateY(0) rotate(0deg) scale(1); text-shadow: 0 0 10px #ffbca9; }
-    50% { transform: translateY(-10px) rotate(3deg) scale(1.05); text-shadow: 0 0 15px #ffbca9, 0 0 25px #ff8960; }
-    100% { transform: translateY(0) rotate(0deg) scale(1); text-shadow: 0 0 10px #ffbca9; }
+.hero h1 {
+  font-size: 5rem;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
-/* Scrapbook Nav – Dynamic Sticky Notes */
-.scrapbook-nav {
-    position: fixed;
-    top: 50%;
-    left: 30px;
-    transform: translateY(-50%) rotate(-10deg);
-    z-index: 100;
-    width: 180px;
+.hero p {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
-.scrapbook-nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.cta-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(45deg, #ff6f61, #de3163);
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.scrapbook-nav li {
-    transform: rotate(-5deg);
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.cta-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 105, 97, 0.8);
 }
 
-.scrapbook-nav .sticky-note {
-    display: block;
-    padding: 1.2rem;
-    background: linear-gradient(45deg, #ffeca1, #ffd700);
-    border: 4px dashed #482502;
-    box-shadow: 6px 6px 0 #d88c3e, 8px 8px 10px rgba(0,0,0,0.2);
-    font-family: 'Annie Use Your Telescope', cursive;
-    font-size: 1.3rem;
-    color: #482502;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-style: preserve-3d;
+.menu-teaser {
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
-.scrapbook-nav .sticky-note:hover {
-    transform: scale(1.15) rotate(8deg) translateZ(20px);
-    box-shadow: 10px 10px 0 #ffbca9, 12px 12px 15px rgba(0,0,0,0.3);
-    background: linear-gradient(45deg, #ffd700, #ff8960);
+.menu-teaser h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  animation: float 3s ease-in-out infinite;
 }
 
-/* Main Content – Surreal Corkboard */
-main {
-    padding-left: 220px;
-    perspective: 1500px;
-    position: relative;
-    overflow: hidden;
+.tea-card {
+  display: inline-block;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 1rem;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.corkboard-section {
-    position: relative;
-    margin: 3rem auto;
-    padding: 2.5rem;
-    background: linear-gradient(135deg, #f7d9b5, #fff5e6);
-    border: 8px double #482502;
-    box-shadow: 12px 12px 0 #d88c3e, 15px 15px 20px rgba(0,0,0,0.2);
-    border-radius: 15px;
-    max-width: 650px;
-    transform: rotate(-5deg) translateZ(0);
-    opacity: 0;
-    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+.tea-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255, 182, 193, 0.6);
 }
 
-.corkboard-section.loaded {
-    opacity: 1;
-    transform: rotate(0deg) translateZ(50px);
+.tea-card img {
+  width: 100%;
+  border-radius: 15px;
+  animation: fadeIn 2s ease-in;
 }
 
-.corkboard-section.scroll-active {
-    box-shadow: 15px 15px 0 #ffbca9, 18px 18px 25px rgba(0,0,0,0.3);
-    transform: rotate(3deg) translateZ(100px) scale(1.03);
+.tea-card h3 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
 }
 
-/* Images – Polaroid Pop */
-img {
-    max-width: 220px;
-    border: 5px solid #482502;
-    background: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    transform: rotate(5deg) translateZ(20px);
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.tea-card p {
+  font-size: 1rem;
+  color: #ddd;
 }
 
-img:hover {
-    transform: rotate(-5deg) translateZ(40px) scale(1.15);
-    box-shadow: 0 0 15px #ffbca9;
+.tea-card a {
+  color: #ff6f61;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Heart Particles – Dreamlike Float */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    mix-blend-mode: overlay;
+@keyframes pulse {
+  0% { background-size: 100%; }
+  100% { background-size: 110%; }
 }
 
-.particle {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIuNSAyLjVDMTAuNSAwLjUgOC41IDQuNSAyLjUgNC41UzYuNSA5LjUgMTIuNSAxNVMxOC41IDkuNSAyMi41IDQuNVMyMC41IDAuNSAxMi41IDIuNVoiIGZpbGw9ImdyYWRpZW50KDEzNWRlZywgI2ZmYjhhOSwgI2ZmODk2MCkiIHN0cm9rZT0iIzQ4MjUwMiIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+');
-    animation: dreamFloat 15s infinite ease-in-out;
-    will-change: transform, opacity;
+@keyframes glow {
+  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+  100% { text-shadow: 0 0 30px rgba(255, 255, 255, 1); }
 }
 
-@keyframes dreamFloat {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
-    50% { transform: translate(calc(60vw - 50%), -60vh) rotate(180deg); opacity: 0.9; }
-    100% { transform: translate(calc(120vw - 100%), -120vh) rotate(360deg); opacity: 0.2; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Titles – Radiant Glow */
-h1, h2 {
-    font-family: 'VT323', monospace;
-    font-size: 2.5rem;
-    color: #482502;
-    text-shadow: 0 0 10px #ffbca9, 0 0 20px #ff8960;
-    animation: radiantGlow 5s infinite alternate;
-    transform-style: preserve-3d;
-}
-
-@keyframes radiantGlow {
-    0% { text-shadow: 0 0 10px #ffbca9, 0 0 20px #ff8960; }
-    100% { text-shadow: 0 0 15px #ffbca9, 0 0 30px #ff8960, 0 0 40px #d88c3e; }
-}
-
-/* Text – Organic Bounce */
-p, ul li {
-    font-family: 'Annie Use Your Telescope', cursive;
-    font-size: 1.3rem;
-    color: #482502;
-    animation: organicBounce 6s infinite ease-in-out;
-    transform-style: preserve-3d;
-}
-
-@keyframes organicBounce {
-    0%, 100% { transform: translateY(0) translateZ(0); }
-    50% { transform: translateY(-3px) translateZ(10px); }
-}
-
-/* Menu Items – Playful Flip */
-.menu-item {
-    background: linear-gradient(45deg, #fff, #f7e4c8);
-    border: 6px solid #482502;
-    box-shadow: 10px 10px 0 #d88c3e, 12px 12px 15px rgba(0,0,0,0.2);
-    padding: 1.8rem;
-    border-radius: 8px;
-    transform: rotate(3deg) translateZ(20px);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.menu-item:hover {
-    transform: rotate(-3deg) translateZ(40px) scale(1.08);
-    box-shadow: 12px 12px 0 #ffbca9, 15px 15px 20px rgba(0,0,0,0.3);
-}
-
-.menu-item img {
-    max-width: 160px;
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2.5rem;
-    justify-content: center;
-}
-
-/* Reviews – Whimsical Spin */
-.review-card {
-    background: linear-gradient(45deg, #ffeca1, #ffd700);
-    border: 5px dashed #482502;
-    padding: 1.8rem;
-    border-radius: 8px;
-    box-shadow: 6px 6px 0 #d88c3e, 8px 8px 15px rgba(0,0,0,0.2);
-    transform: rotate(-3deg) translateZ(20px);
-    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.review-card:hover {
-    transform: rotate(3deg) translateZ(40px) scale(1.08);
-    box-shadow: 10px 10px 0 #ffbca9, 12px 12px 20px rgba(0,0,0,0.3);
-}
-
-/* Drink Details & About – Immersive Depth */
-.drink-details, .about-section {
-    background: linear-gradient(135deg, #f7d9b5, #fff5e6);
-    border: 8px double #482502;
-    box-shadow: 12px 12px 0 #d88c3e, 15px 15px 20px rgba(0,0,0,0.2);
-    border-radius: 12px;
-    padding: 2.5rem;
-    max-width: 650px;
-    transform: rotate(-5deg) translateZ(20px);
-    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.drink-details img, .about-section img {
-    max-width: 220px;
-}
-
-/* Footer – Tape Flutter */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 1.2rem;
-    background: linear-gradient(90deg, #d88c3e, #ff8960);
-    text-align: center;
-    border-top: 6px solid #482502;
-    font-family: 'VT323', monospace;
-    color: #fff;
-    animation: tapeFlutter 4s infinite ease-in-out;
-    transform-style: preserve-3d;
-}
-
-@keyframes tapeFlutter {
-    0%, 100% { transform: translateY(0) translateZ(0); }
-    50% { transform: translateY(-5px) translateZ(10px); }
-}
-
-/* Global Scroll Animation Trigger */
-@keyframes reveal {
-    from { opacity: 0; transform: translateY(100px) rotate(-10deg) translateZ(-50px); }
-    to { opacity: 1; transform: translateY(0) rotate(0deg) translateZ(50px); }
-}
-
-[data-scroll] {
-    animation: reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
