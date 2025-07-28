@@ -4,168 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bubble Tea Bliss</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1a252f 0%, #2e4a62 100%);
-      color: #ffd700;
-      overflow-x: hidden;
-    }
-    .hero {
-      height: 100vh;
-      position: relative;
-      background: url('https://images.unsplash.com/photo-1608030804530-7e4e46b466ae') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.2), rgba(0, 102, 204, 0.3));
-      animation: swirl 10s infinite linear;
-    }
-    .hero-content h1 {
-      font-size: 5rem;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-      margin: 0;
-    }
-    .hero-image {
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-      margin: 1rem 0;
-      cursor: pointer;
-    }
-    .hero p {
-      font-size: 1.8rem;
-      text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
-      margin: 0.5rem 0;
-    }
-    .cta-button, .order-button {
-      display: inline-block;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      color: #1a252f;
-      text-decoration: none;
-      margin: 0 1rem;
-      border-radius: 20px;
-    }
-    .cta-button { background: #00cc99; }
-    .order-button { background: #ff4500; }
-    .cta-button:hover, .order-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    }
-    .boba-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    .boba {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background: radial-gradient(circle, #000000 50%, #333333 100%);
-      border-radius: 50%;
-      animation: floatBoba 5s infinite linear;
-    }
-    .art-nav {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      flex-direction: column;
-      align-items: center;
-    }
-    .nav-item {
-      color: #ffd700;
-      text-decoration: none;
-      font-size: 1.3rem;
-      margin: 1rem 0;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    .nav-item:hover {
-      color: #ffcc00;
-      transform: scale(1.2);
-    }
-    .gallery {
-      padding: 3rem 1rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    .gallery h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .tea-frame {
-      display: inline-block;
-      width: 280px;
-      background: rgba(255, 215, 0, 0.1);
-      border: 2px solid #ffd700;
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1rem;
-      transition: transform 0.5s ease;
-    }
-    .tea-frame:hover {
-      transform: translateY(-10px);
-    }
-    .tea-frame img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .tea-frame h3 {
-      font-size: 1.6rem;
-      margin: 0.5rem 0;
-    }
-    .tea-frame p {
-      font-size: 1rem;
-      color: #ffd700;
-    }
-    .tea-frame a {
-      color: #00cc99;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    @keyframes swirl {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes floatBoba {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(20px, 50vh) scale(1.2); }
-      100% { transform: translate(40px, 100vh) scale(1); opacity: 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
-  <div class="hero">
+  <header class="hero">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
     <div class="hero-content">
       <h1>Bubble Tea</h1>
-      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Bubble Tea" class="hero-image" id="nav-trigger">
+      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Bubble Tea" class="hero-image">
       <p>Deliciously Artistic</p>
       <a href="classic-milk-tea.html" class="cta-button">Learn More</a>
       <a href="#order" class="order-button">Order Now</a>
     </div>
     <div class="boba-particles"></div>
-    <nav class="art-nav">
-      <a href="#home" class="nav-item">Home</a>
-      <a href="#about" class="nav-item">About</a>
-      <a href="#contact" class="nav-item">Contact</a>
-    </nav>
-  </div>
+  </header>
   <section class="gallery">
     <h2>Our Flavors</h2>
     <div class="tea-frame">
@@ -176,15 +33,12 @@
     </div>
   </section>
   <script>
-    // Animation for initial load
-    let tl = new TimelineLite();
-    tl.from(".hero h1", { opacity: 0, y: 50, duration: 1.5, ease: "power2.out" })
-      .from(".hero-image", { opacity: 0, scale: 0.8, duration: 1.5, delay: 0.3, ease: "back.out(1.7)" }, "-=1")
-      .from(".hero p", { opacity: 0, y: 30, duration: 1.5, delay: 0.6, ease: "power2.out" }, "-=1")
-      .from(".cta-button, .order-button", { opacity: 0, scale: 0.5, duration: 1, delay: 0.9, ease: "elastic.out(1, 0.3)" }, "-=1")
-      .from(".tea-frame", { opacity: 0, y: 100, duration: 1.5, delay: 1.2, ease: "power3.out" }, "-=1");
+    gsap.from(".hero h1", { opacity: 0, y: 50, duration: 1.5, ease: "power2.out" });
+    gsap.from(".hero-image", { opacity: 0, scale: 0.8, duration: 1.5, delay: 0.3, ease: "back.out(1.7)" });
+    gsap.from(".hero p", { opacity: 0, y: 30, duration: 1.5, delay: 0.6, ease: "power2.out" });
+    gsap.from(".cta-button, .order-button", { opacity: 0, scale: 0.5, duration: 1, delay: 0.9, ease: "elastic.out(1, 0.3)" });
+    gsap.from(".tea-frame", { opacity: 0, y: 100, duration: 1.5, delay: 1.2, ease: "power3.out" });
 
-    // Boba animation
     function createBoba() {
       const boba = document.createElement('div');
       boba.classList.add('boba');
@@ -194,21 +48,6 @@
       setTimeout(() => boba.remove(), 10000);
     }
     setInterval(createBoba, 300);
-
-    // Nav trigger
-    const nav = document.querySelector('.art-nav');
-    const trigger = document.getElementById('nav-trigger');
-    trigger.addEventListener('click', () => {
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-      let tlNav = new TimelineLite();
-      tlNav.from(".nav-item", { 
-        opacity: 0, 
-        rotation: 360, 
-        duration: 1, 
-        stagger: 0.1, 
-        ease: "power2.out" 
-      });
-    });
   </script>
 </body>
 </html>
