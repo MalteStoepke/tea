@@ -129,617 +129,97 @@
             #prev-btn, #next-btn { display: block; }
             #tooltip { display: none !important; } /* Disable tooltip on mobile */
         }
-    </style>
-</head>
-<body>
-    <div id="loading">Loading Virtual Bubble Tea Shop...</div>
-    <div id="tooltip"></div>
-    <div id="info-modal">
-        <h2 id="info-title"></h2>
-        <p id="info-description"></p>
-        <button onclick="closeModal()">Close</button>
-    </div>
-    <div id="menu">
-        <h2>Bubble Tea Menu</h2>
-        <ul>
-            <li onclick="goToPosition(3)">Classic Milk Tea</li>
-            <li onclick="goToPosition(4)">Matcha Bubble Tea</li>
-            <li onclick="goToPosition(5)">Fruit Infused Tea</li>
-            <li onclick="goToPosition(6)">Taro Bubble Tea</li>
-            <li onclick="goToPosition(7)">Thai Tea</li>
-        </ul>
-    </div>
-    <div id="instructions">Scroll or swipe to navigate through the shop. Tap items for details. Scroll/swipe further for menu.</div>
-    <div id="prev-btn" onclick="navigate(-1)">Previous</div>
-    <div id="next-btn" onclick="navigate(1)">Next</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.167.0/build/three.module.js"
-            }
-        }
-    </script>
-    <script type="module">
-        import * as THREE from 'three';
-        import { EffectComposer } from 'https://unpkg.com/three@0.167.0/examples/jsm/postprocessing/EffectComposer.js';
-        import { RenderPass } from 'https://unpkg.com/three@0.167.0/examples/jsm/postprocessing/RenderPass.js';
-        import { UnrealBloomPass } from 'https://unpkg.com/three@0.167.0/examples/jsm/postprocessing/UnrealBloomPass.js';
-        import { FontLoader } from 'https://unpkg.com/three@0.167.0/examples/jsm/loaders/FontLoader.js';
-        import { TextGeometry } from 'https://unpkg.com/three@0.167.0/examples/jsm/geometries/TextGeometry.js';
-
-        // Scene setup
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xFFE8AC);
-        scene.fog = new THREE.FogExp2(0xFFE8AC, 0.02); // Soft fog for harmony
-
-        // Camera
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 5, 20);
-
-        // Renderer
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.shadowMap.enabled = true;
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
-        document.body.appendChild(renderer.domElement);
-
-        // Post-processing
-        const composer = new EffectComposer(renderer);
-        const renderPass = new RenderPass(scene, camera);
-        composer.addPass(renderPass);
-        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.8, 0.4, 0.85);
-        composer.addPass(bloomPass);
-
-        // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-        directionalLight.position.set(5, 10, 5);
-        directionalLight.castShadow = true;
-        directionalLight.shadow.mapSize.width = 2048;
-        directionalLight.shadow.mapSize.height = 2048;
-        directionalLight.shadow.camera.near = 0.5;
-        directionalLight.shadow.camera.far = 50;
-        scene.add(directionalLight);
-
-        const pointLight = new THREE.PointLight(0xffffff, 1.0);
-        pointLight.position.set(0, 8, -5);
-        scene.add(pointLight);
-
-        // Floor
-        const floorGeometry = new THREE.PlaneGeometry(30, 30);
-        const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xF9CDD9, roughness: 0.6, metalness: 0 });
-        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-        floor.rotation.x = -Math.PI / 2;
-        floor.receiveShadow = true;
-        scene.add(floor);
-
-        // Walls
-        const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xFFE8AC, roughness: 0.4 });
-        const backWall = new THREE.Mesh(new THREE.BoxGeometry(30, 15, 0.2), wallMaterial);
-        backWall.position.set(0, 7.5, -15);
-        scene.add(backWall);
-
-        const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.2, 15, 30), wallMaterial);
-        leftWall.position.set(-15, 7.5, 0);
-        scene.add(leftWall);
-
-        const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.2, 15, 30), wallMaterial);
-        rightWall.position.set(15, 7.5, 0);
-        scene.add(rightWall);
-
-        // Counter
-        const counterGeometry = new THREE.BoxGeometry(25, 3, 6); // Wider counter to space items
-        const counterMaterial = new THREE.MeshStandardMaterial({ color: 0xF9CDD9, metalness: 0.2, roughness: 0.5 });
-        const counter = new THREE.Mesh(counterGeometry, counterMaterial);
-        counter.position.set(0, 1.5, -10);
-        counter.castShadow = true;
-        scene.add(counter);
-
-        // Tables
-        const tableMaterial = new THREE.MeshStandardMaterial({ color: 0x8B4513, roughness: 0.3 });
-        const table1 = new THREE.Mesh(new THREE.BoxGeometry(4, 2, 4), tableMaterial);
-        table1.position.set(-8, 1, 5);
-        table1.castShadow = true;
-        scene.add(table1);
-
-        const table2 = new THREE.Mesh(new THREE.BoxGeometry(4, 2, 4), tableMaterial);
-        table2.position.set(8, 1, 5);
-        table2.castShadow = true;
-        scene.add(table2);
-
-        // Chairs
-        const chairMaterial = new THREE.MeshStandardMaterial({ color: 0xFFE8AC, roughness: 0.5 });
-        for (let i = -1; i <= 1; i += 2) {
-            const chair1 = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 2, 32), chairMaterial);
-            chair1.position.set(-8 + i*2, 1, 5);
-            chair1.castShadow = true;
-            scene.add(chair1);
-
-            const chair2 = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 2, 32), chairMaterial);
-            chair2.position.set(8 + i*2, 1, 5);
-            chair2.castShadow = true;
-            scene.add(chair2);
-        }
-
-        // Function to create detailed bubble tea placeholder
-        function createBubbleTea(x, z, liquidColor, name, desc) {
-            const group = new THREE.Group();
-
-            // Cup
-            const cupGeo = new THREE.CylinderGeometry(0.8, 0.6, 3, 32); // Smaller size to reduce collision
-            const cupMat = new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0.6, roughness: 0.2 });
-            const cup = new THREE.Mesh(cupGeo, cupMat);
-            cup.position.y = 1.5;
-            cup.castShadow = true;
-            group.add(cup);
-
-            // Liquid
-            const liquidGeo = new THREE.CylinderGeometry(0.75, 0.55, 2.5, 32);
-            const liquidMat = new THREE.MeshStandardMaterial({ color: liquidColor, roughness: 0.1, metalness: 0.1 });
-            const liquid = new THREE.Mesh(liquidGeo, liquidMat);
-            liquid.position.y = 1.25;
-            group.add(liquid);
-
-            // Pearls
-            for (let i = 0; i < 15; i++) {
-                const pearlGeo = new THREE.SphereGeometry(0.15, 16, 16); // Smaller pearls
-                const pearlMat = new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.3 });
-                const pearl = new THREE.Mesh(pearlGeo, pearlMat);
-                pearl.position.set(Math.random() * 0.5 - 0.25, 0.2 + Math.random() * 0.5, Math.random() * 0.5 - 0.25);
-                pearl.castShadow = true;
-                group.add(pearl);
-            }
-
-            // Straw
-            const strawGeo = new THREE.CylinderGeometry(0.08, 0.08, 4, 32); // Thinner straw
-            const strawMat = new THREE.MeshStandardMaterial({ color: 0xff0000, roughness: 0.2 });
-            const straw = new THREE.Mesh(strawGeo, strawMat);
-            straw.position.set(0.4, 2, 0);
-            straw.rotation.z = Math.PI / 6;
-            straw.castShadow = true;
-            group.add(straw);
-
-            group.position.set(x, 1.5, z);
-            group.userData = { name, desc };
-            scene.add(group);
-            return group;
-        }
-
-        // Create 5 bubble teas with adjusted positions to avoid collision
-        const boba1 = createBubbleTea(-8, -10, 0x8B4513, 'Classic Milk Tea', 'Creamy milk tea with chewy tapioca pearls. Refreshing and classic flavor.');
-        const boba2 = createBubbleTea(-4, -10, 0x228B22, 'Matcha Bubble Tea', 'Green matcha infused tea with bobas. Healthy and earthy taste.');
-        const boba3 = createBubbleTea(0, -10, 0xFF69B4, 'Fruit Infused Tea', 'Fresh fruit flavors mixed with tea and pearls. Sweet and tangy.');
-        const boba4 = createBubbleTea(4, -10, 0x9370DB, 'Taro Bubble Tea', 'Smooth taro root flavored tea with bobas. Creamy and nutty.');
-        const boba5 = createBubbleTea(8, -10, 0xFFA500, 'Thai Tea', 'Spiced Thai tea with milk and pearls. Bold and aromatic.');
-
-        // Load font for 3D labels
-        const fontLoader = new FontLoader();
-        const labels = [];
-        fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
-            function createLabel(text, position) {
-                const textGeo = new TextGeometry(text, {
-                    font: font,
-                    size: 0.5,
-                    height: 0.1,
-                    curveSegments: 12,
-                    bevelEnabled: true,
-                    bevelThickness: 0.02,
-                    bevelSize: 0.01,
-                    bevelSegments: 5
-                });
-                const textMat = new THREE.MeshStandardMaterial({ color: 0xF9CDD9 });
-                const textMesh = new THREE.Mesh(textGeo, textMat);
-                textMesh.position.copy(position);
-                textMesh.position.y += 4; // Above boba
-                textMesh.position.x -= text.length * 0.2; // Center approximate
-                scene.add(textMesh);
-                labels.push(textMesh);
-            }
-
-            createLabel('Classic Milk Tea', boba1.position);
-            createLabel('Matcha Bubble Tea', boba2.position);
-            createLabel('Fruit Infused Tea', boba3.position);
-            createLabel('Taro Bubble Tea', boba4.position);
-            createLabel('Thai Tea', boba5.position);
-        });
-
-        // Particle effects for bubbles
-        const particleGeometry = new THREE.BufferGeometry();
-        const particleVertices = [];
-        for (let i = 0; i < 500; i++) {
-            particleVertices.push(Math.random() * 30 - 15, Math.random() * 15 + 5, Math.random() * 30 - 15);
-        }
-        particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particleVertices, 3));
-        const particleMaterial = new THREE.PointsMaterial({ color: 0xF9CDD9, size: 0.05, transparent: true, opacity: 0.5 });
-        const particles = new THREE.Points(particleGeometry, particleMaterial);
-        scene.add(particles);
-
-        // Animate particles
-        function animateParticles() {
-            const positions = particleGeometry.attributes.position.array;
-            for (let i = 1; i < positions.length; i += 3) {
-                positions[i] += Math.sin(Date.now() * 0.001 + i) * 0.01;
-                if (positions[i] > 20) positions[i] = 5;
-            }
-            particleGeometry.attributes.position.needsUpdate = true;
-        }
-
-        // Premade camera positions (adjusted zoom for full view)
-        const positions = [
-            { pos: new THREE.Vector3(0, 5, 20), look: new THREE.Vector3(0, 0, -10) }, // Entrance
-            { pos: new THREE.Vector3(0, 4, 10), look: new THREE.Vector3(0, 0, -10) }, // Approach counter
-            { pos: new THREE.Vector3(0, 3, 0), look: new THREE.Vector3(0, 0, -10) }, // Counter overview
-            { pos: new THREE.Vector3(-8, 4, -5), look: boba1.position }, // Close to boba1, zoomed out
-            { pos: new THREE.Vector3(-4, 4, -5), look: boba2.position }, // Close to boba2
-            { pos: new THREE.Vector3(0, 4, -5), look: boba3.position }, // Close to boba3
-            { pos: new THREE.Vector3(4, 4, -5), look: boba4.position }, // Close to boba4
-            { pos: new THREE.Vector3(8, 4, -5), look: boba5.position }, // Close to boba5
-            { pos: new THREE.Vector3(-10, 3, 5), look: new THREE.Vector3(-8, 1, 5) }, // Table 1 view
-            { pos: new THREE.Vector3(10, 3, 5), look: new THREE.Vector3(8, 1, 5) } // Table 2 view
-        ];
-
-        let currentIndex = 0;
-        let isAnimating = false;
-        let wheelDelta = 0;
-        const wheelThreshold = 100;
-        let touchStartY = 0;
-
-        function animateTo(index) {
-            if (isAnimating || index < 0 || index >= positions.length) return;
-            isAnimating = true;
-            const { pos, look } = positions[index];
-            gsap.to(camera.position, {
-                x: pos.x, y: pos.y, z: pos.z,
-                duration: 1.5,
-                ease: "power2.inOut",
-                onUpdate: () => camera.lookAt(look),
-                onComplete: () => { isAnimating = false; currentIndex = index; }
-            });
-        }
-
-        // Navigation function
-        window.navigate = function(delta) {
-            if (isAnimating) return;
-            let newIndex = currentIndex + delta;
-            if (newIndex < 0) newIndex = positions.length - 1;
-            if (newIndex >= positions.length) newIndex = 0;
-            animateTo(newIndex);
-            if (newIndex >= positions.length - 2) {
-                gsap.to('#menu', { bottom: 0, duration: 0.5 });
-            } else {
-                gsap.to('#menu', { bottom: -300, duration: 0.5 });
-            }
-        }
-
-        // Raycaster
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        let hoveredObject = null;
-        const interactables = [boba1, boba2, boba3, boba4, boba5];
-
-        // Mouse move for hover/tooltips (desktop only)
-        function onMouseMove(event) {
-            if (window.innerWidth <= 768) return; // Disable on mobile
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(interactables, true);
-            const tooltip = document.getElementById('tooltip');
-            if (intersects.length > 0) {
-                hoveredObject = intersects[0].object;
-                while (!hoveredObject.userData.name && hoveredObject.parent) hoveredObject = hoveredObject.parent;
-                tooltip.innerHTML = `${hoveredObject.userData.name}<br><small>Click to explore</small>`;
-                tooltip.style.display = 'block';
-                tooltip.style.left = `${event.clientX + 15}px`;
-                tooltip.style.top = `${event.clientY + 15}px`;
-            } else {
-                hoveredObject = null;
-                tooltip.style.display = 'none';
-            }
-        }
-        window.addEventListener('mousemove', onMouseMove);
-
-        // Click for info and go to position (works on tap for mobile)
-        function onMouseClick(event) {
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-            raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(interactables, true);
-            if (intersects.length > 0) {
-                let selected = intersects[0].object;
-                while (!selected.userData.name && selected.parent) selected = selected.parent;
-                let targetIndex;
-                if (selected === boba1) targetIndex = 3;
-                else if (selected === boba2) targetIndex = 4;
-                else if (selected === boba3) targetIndex = 5;
-                else if (selected === boba4) targetIndex = 6;
-                else if (selected === boba5) targetIndex = 7;
-                if (targetIndex !== undefined) {
-                    animateTo(target The user is complaining about several issues in the current code:
-
-1. When zooming in to the bubble teas, it doesn't show them fully; it's too zoomed in.
-
-2. A lot is colliding into each other.
-
-3. Hovering to see what is what doesn't work on phone, need a different solution for touchscreens.
-
-I need to fix these in the code.
-
-First, for zooming: In the positions array, the close positions are like { pos: new THREE.Vector3(-7, 4, -7), look: boba1.position }
-
-The z is -7, while boba at z = -10, so distance is 3 units. For a model of height ~3, it might be too close.
-
-Adjust z to -6 or -5 for less zoom.
-
-For x, ensure centered.
-
-Second, colliding: The bubble teas are at x = -7, -3.5, 0, 3.5, 7, but with scale 1, radius 1, so distance 3.5 between centers, min distance 2 for no collision, but since 3.5 > 2, no collision, but perhaps visually close.
-
-Increase spacing to -8, -4, 0, 4, 8.
-
-Counter is 20 wide, from -10 to 10.
-
-Ok.
-
-For hovering on phone: Hover is mousemove, which doesn't work on touch.
-
-For touch, use tap to show info, but since click is already for zoom and info, perhaps make tooltip on tap, but since click zooms and shows modal, perhaps remove tooltip or make it work on touchmove or something.
-
-But tooltip is for hover, on mobile, perhaps disable tooltip or use long press.
-
-But to optimize, perhaps remove tooltip for mobile, rely on tap to open modal.
-
-Detect mobile and hide tooltip.
-
-But simple: since hover doesn't work on touch, and click does the job (shows modal), perhaps keep, but add labels or something.
-
-To make harmonic, perhaps add 3D text labels above each boba.
-
-Use THREE.TextGeometry for names.
-
-But need font loader.
-
-Add THREE.FontLoader from CDN.
-
-Load a font, create text.
-
-For each boba, add text mesh above.
-
-That way, no need for hover, the name is always visible.
-
-For touch, tap on text or boba to show info.
-
-But raycast on group.
-
-Yes.
-
-For collision, ensure positions are spaced.
-
-Add more effects, like better lighting, perhaps spotlights on bobas.
-
-For zoom, adjust pos z to -5 or so, to show fully.
-
-Camera fov 75, perhaps adjust to 60 for less distortion.
-
-But keep.
-
-The date is July 28, 2025, but irrelevant.
-
-Tools available, but for code, I can use code_execution to test the code.
-
-But since it's Three.js, code_execution probably doesn't support WebGL or canvas, as it's Python.
-
-The code_execution is Python, not JS.
-
-No tool for JS execution.
-
-So, I have to reason and fix.
-
-For models, perhaps search for better GLTF models.
-
-User said "i could make 3d models", so keep placeholders.
-
-To fix collision, increase spacing.
-
-For hovering on phone, replace with always visible labels.
-
-Add import { FontLoader } from 'https://unpkg.com/three@0.167.0/examples/jsm/loaders/FontLoader.js';
-
-Then, const loader = new FontLoader();
-
-loader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-
-  function createText(text, position) {
-
-    const geometry = new THREE.TextGeometry( text, {
-
-      font: font,
-
-      size: 0.5,
-
-      height: 0.1,
-
-    } );
-
-    const material = new THREE.MeshBasicMaterial( { color: 0xF9CDD9 } );
-
-    const mesh = new THREE.Mesh( geometry, material );
-
-    mesh.position.set( position.x - 1, position.y + 4, position.z );
-
-    scene.add( mesh );
-
-    return mesh;
-
-  }
-
-  createText('Classic Milk Tea', boba1.position);
-
-  // etc
-
-} );
-
-Yes.
-
-Remove tooltip altogether, since labels are there.
-
-For mobile, keep tap to zoom and show modal.
-
-Also, fix bouncing, perhaps make it less, or on pearls only.
-
-But keep.
-
-For harmony, keep the bloom, fog.
-
-To make sure no collision, positions x = -8, -4, 0, 4, 8
-
-Update close pos accordingly.
-
-Counter width 25 perhaps.
-
-But 20 is from -10 to 10, ok for x= +/-8.
-
-Yes.
-
-For zoom, change close pos z = -5, y=3.5 or something.
-
-Look at boba.position, which is y=1.5, but cup height 3, so top at 3, so y=4 is ok.
-
-Distance z=-5 - (-10)=5 units, for size ~2, better.
-
-Yes.```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Bubble Tea Shop</title>
-    <style>
-        body { margin: 0; overflow: hidden; font-family: sans-serif; }
-        canvas { display: block; }
-        #loading { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
-            background: #FFE8AC; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 24px; 
-            color: #F9CDD9; 
-            z-index: 10;
-            opacity: 1;
-        }
-        #tooltip {
+        #bottom-bar {
             position: absolute;
-            background: rgba(249, 205, 217, 0.95); /* Slightly less opacity for solidity */
-            color: #FFE8AC;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            pointer-events: none;
-            display: none;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 600px;
             z-index: 5;
-            border: 1px solid #FFE8AC;
         }
-        #info-modal {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: #FFE8AC;
-            color: #F9CDD9;
-            padding: 25px;
-            border-radius: 12px;
-            max-width: 350px;
-            display: none;
-            z-index: 6;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-        #info-modal h2 {
-            margin-top: 0;
-            font-size: 20px;
-        }
-        #info-modal p {
+        #section-left, #section-right {
             font-size: 16px;
+            color: #F9CDD9;
         }
-        #info-modal button {
+        #progress {
+            flex: 1;
+            margin: 0 20px;
+            height: 5px;
+            background: #F9CDD9;
+            border-radius: 5px;
+            position: relative;
+        }
+        #progress-fill {
+            height: 100%;
+            background: #FFE8AC;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        .hotspot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .inner-dot {
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+        }
+        #about-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 232, 172, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 4;
+            text-align: center;
+            color: #F9CDD9;
+            font-size: 18px;
+            padding: 20px;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+        #about-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #about-overlay h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        #about-overlay p {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        #enter-button {
             background: #F9CDD9;
             color: #FFE8AC;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        #menu {
-            position: absolute;
-            bottom: -300px; /* Adjusted for more space */
-            left: 0;
-            width: 100%;
-            background: rgba(249, 205, 217, 0.95);
-            color: #FFE8AC;
-            padding: 25px;
-            box-sizing: border-box;
-            transition: bottom 0.5s ease;
-            z-index: 5;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-        }
-        #menu h2 {
-            margin-top: 0;
-            text-align: center;
-        }
-        #menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        #menu li {
-            margin: 10px;
-            padding: 10px 20px;
-            background: #FFE8AC;
-            color: #F9CDD9;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        #instructions {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(249, 205, 217, 0.8);
-            color: #FFE8AC;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 8px;
-            z-index: 5;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-size: 14px;
-        }
-        #prev-btn, #next-btn {
-            position: absolute;
-            bottom: 20px;
-            background: #F9CDD9;
-            color: #FFE8AC;
-            padding: 10px 20px;
-            border-radius: 4px;
             cursor: pointer;
-            z-index: 5;
-            display: none; /* Show on mobile */
-        }
-        #prev-btn { left: 20px; }
-        #next-btn { right: 20px; }
-        @media (max-width: 768px) {
-            #prev-btn, #next-btn { display: block; }
+            font-weight: bold;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -764,6 +244,19 @@ Yes.```html
     <div id="instructions">Scroll or swipe to navigate through the shop. Tap items for details. Scroll/swipe further for menu.</div>
     <div id="prev-btn" onclick="navigate(-1)">Previous</div>
     <div id="next-btn" onclick="navigate(1)">Next</div>
+    <div id="bottom-bar">
+        <span id="section-left">I. Exterior</span>
+        <div id="progress">
+            <div id="progress-fill"></div>
+        </div>
+        <span id="section-right">II. Interior</span>
+    </div>
+    <div id="about-overlay">
+        <h1>Welcome to Our Bubble Tea Shop</h1>
+        <p>Discover the best bubble teas in town! We offer a variety of flavors made with fresh ingredients. Explore our virtual shop to see our offerings up close.</p>
+        <p>Our shop is dedicated to providing the highest quality bubble tea experience. From classic milk tea to exotic fruit infusions, there's something for everyone.</p>
+        <button id="enter-button">Enter the Shop</button>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script type="importmap">
         {
@@ -787,7 +280,7 @@ Yes.```html
 
         // Camera
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 5, 20);
+        camera.position.set(0, 5, 30); // Start farther outside
 
         // Renderer
         const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -841,6 +334,18 @@ Yes.```html
         const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.2, 15, 30), wallMaterial);
         rightWall.position.set(15, 7.5, 0);
         scene.add(rightWall);
+
+        // Front wall for outside view
+        const frontWall = new THREE.Mesh(new THREE.BoxGeometry(30, 15, 0.2), wallMaterial);
+        frontWall.position.set(0, 7.5, 15);
+        scene.add(frontWall);
+
+        // Door in front wall (placeholder)
+        const doorGeometry = new THREE.BoxGeometry(5, 10, 0.3);
+        const doorMaterial = new THREE.MeshStandardMaterial({ color: 0xF9CDD9 });
+        const door = new THREE.Mesh(doorGeometry, doorMaterial);
+        door.position.set(0, 5, 15);
+        scene.add(door);
 
         // Counter
         const counterGeometry = new THREE.BoxGeometry(25, 3, 6);
@@ -958,6 +463,17 @@ Yes.```html
             createLabel('Thai Tea', boba5.position);
         });
 
+        // Hotspots
+        const hotspots = [];
+        const hotspotPositions = [boba1.position, boba2.position, boba3.position, boba4.position, boba5.position];
+        hotspotPositions.forEach((pos, index) => {
+            const hotspot = document.createElement('div');
+            hotspot.classList.add('hotspot');
+            hotspot.innerHTML = '<div class="inner-dot"></div>';
+            document.body.appendChild(hotspot);
+            hotspots.push({ elem: hotspot, pos: new THREE.Vector3().copy(pos) });
+        });
+
         // Particle effects for bubbles
         const particleGeometry = new THREE.BufferGeometry();
         const particleVertices = [];
@@ -981,14 +497,15 @@ Yes.```html
 
         // Premade camera positions (adjusted zoom for full view)
         const positions = [
-            { pos: new THREE.Vector3(0, 5, 20), look: new THREE.Vector3(0, 0, -10) }, // Entrance
+            { pos: new THREE.Vector3(0, 5, 30), look: new THREE.Vector3(0, 0, 0) }, // Outside view
+            { pos: new THREE.Vector3(0, 4, 15), look: new THREE.Vector3(0, 0, -10) }, // Entering
             { pos: new THREE.Vector3(0, 4, 10), look: new THREE.Vector3(0, 0, -10) }, // Approach counter
             { pos: new THREE.Vector3(0, 3, 0), look: new THREE.Vector3(0, 0, -10) }, // Counter overview
-            { pos: new THREE.Vector3(-8, 4, -5), look: boba1.position }, // Close to boba1, zoomed out
-            { pos: new THREE.Vector3(-4, 4, -5), look: boba2.position }, // Close to boba2
-            { pos: new THREE.Vector3(0, 4, -5), look: boba3.position }, // Close to boba3
-            { pos: new THREE.Vector3(4, 4, -5), look: boba4.position }, // Close to boba4
-            { pos: new THREE.Vector3(8, 4, -5), look: boba5.position }, // Close to boba5
+            { pos: new THREE.Vector3(-8, 6, -5), look: boba1.position }, // Close to boba1, higher y
+            { pos: new THREE.Vector3(-4, 6, -5), look: boba2.position }, // Close to boba2
+            { pos: new THREE.Vector3(0, 6, -5), look: boba3.position }, // Close to boba3
+            { pos: new THREE.Vector3(4, 6, -5), look: boba4.position }, // Close to boba4
+            { pos: new THREE.Vector3(8, 6, -5), look: boba5.position }, // Close to boba5
             { pos: new THREE.Vector3(-10, 3, 5), look: new THREE.Vector3(-8, 1, 5) }, // Table 1 view
             { pos: new THREE.Vector3(10, 3, 5), look: new THREE.Vector3(8, 1, 5) } // Table 2 view
         ];
@@ -1008,8 +525,16 @@ Yes.```html
                 duration: 1.5,
                 ease: "power2.inOut",
                 onUpdate: () => camera.lookAt(look),
-                onComplete: () => { isAnimating = false; currentIndex = index; }
+                onComplete: () => { isAnimating = false; currentIndex = index; updateProgress(); }
             });
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            document.getElementById('progress-fill').style.width = `${(currentIndex / (positions.length - 1)) * 100}%`;
+            // Update section titles if needed
+            // document.getElementById('section-left').innerText = 'I. Exterior';
+            // document.getElementById('section-right').innerText = 'II. Interior';
         }
 
         // Navigation function
@@ -1063,11 +588,11 @@ Yes.```html
                 let selected = intersects[0].object;
                 while (!selected.userData.name && selected.parent) selected = selected.parent;
                 let targetIndex;
-                if (selected === boba1) targetIndex = 3;
-                else if (selected === boba2) targetIndex = 4;
-                else if (selected === boba3) targetIndex = 5;
-                else if (selected === boba4) targetIndex = 6;
-                else if (selected === boba5) targetIndex = 7;
+                if (selected === boba1) targetIndex = 4;
+                else if (selected === boba2) targetIndex = 5;
+                else if (selected === boba3) targetIndex = 6;
+                else if (selected === boba4) targetIndex = 7;
+                else if (selected === boba5) targetIndex = 8;
                 if (targetIndex !== undefined) {
                     animateTo(targetIndex);
                     showInfo(selected.userData.name, selected.userData.desc);
@@ -1134,12 +659,24 @@ Yes.```html
             animateParticles();
             rotateBobas();
             labels.forEach(label => label.lookAt(camera.position));
+            // Update hotspots positions
+            hotspots.forEach(h => {
+                const vec = h.pos.clone();
+                vec.project(camera);
+                if (vec.z < 1) {
+                    h.elem.style.left = (vec.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                    h.elem.style.top = (-vec.y * 0.5 + 0.5) * window.innerHeight + 'px';
+                    h.elem.style.display = 'flex';
+                } else {
+                    h.elem.style.display = 'none';
+                }
+            });
             composer.render();
         }
         animate();
 
         // Entrance animation
-        animateTo(1); // Start by animating to approach
+        animateTo(0); // Start at outside
 
         // Fade out loading
         gsap.to('#loading', { 
@@ -1175,6 +712,14 @@ Yes.```html
             boba4.rotation.y += 0.005;
             boba5.rotation.y += 0.005;
         }
+
+        // Enter button to start exploration
+        document.getElementById('enter-button').addEventListener('click', () => {
+            gsap.to('#about-overlay', { opacity: 0, duration: 1, onComplete: () => document.getElementById('about-overlay').classList.add('hidden') });
+            animateTo(1); // Move inside
+        });
+
+        updateProgress();
     </script>
 </body>
 </html>
