@@ -1,231 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bubble Tea Bliss</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Courier New', monospace;
-      background: #008080; /* Teal background like old Windows */
-      color: #c0c0c0; /* Light gray text */
-      overflow-x: hidden;
-    }
-    .hero {
-      height: 100vh;
-      position: relative;
-      background: #000000 url('https://images.unsplash.com/photo-1608030804530-7e4e46b466ae') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-      border: 2px solid #000000;
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 0, 0.1), rgba(0, 128, 128, 0.2));
-      animation: swirl 10s infinite linear;
-    }
-    .hero-content {
-      background: #c0c0c0; /* Beige window background */
-      padding: 20px;
-      border: 2px solid #000000;
-      box-shadow: inset 2px 2px #ffffff, inset -2px -2px #808080;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-content h1 {
-      font-size: 3rem;
-      text-shadow: 1px 1px #000000;
-      color: #000080; /* Dark blue for retro title */
-      margin: 0;
-      font-weight: bold;
-    }
-    .hero-image {
-      width: 200px;
-      border: 2px solid #000000;
-      box-shadow: 2px 2px #ffffff, -2px -2px #808080;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      text-shadow: 1px 1px #000000;
-      color: #000000;
-      margin: 0.5rem 0;
-    }
-    .cta-button, .order-button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 1rem;
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 10px;
-      border: 2px outset #c0c0c0;
-      background: #000080;
-      text-shadow: 1px 1px #000000;
-    }
-    .cta-button:hover, .order-button:hover {
-      border-style: inset;
-      transform: none;
-      box-shadow: none;
-    }
-    .boba-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .boba {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: #000000;
-      border: 1px solid #ffffff;
-      border-radius: 50%;
-      animation: fallBoba 5s infinite linear;
-    }
-    .art-nav {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      flex-direction: column;
-      align-items: center;
-      background: #c0c0c0;
-      padding: 10px;
-      border: 2px solid #000000;
-      box-shadow: 2px 2px #ffffff, -2px -2px #808080;
-    }
-    .nav-item {
-      color: #000080;
-      text-decoration: none;
-      font-size: 1.1rem;
-      margin: 5px 0;
-      text-shadow: 1px 1px #000000;
-      transition: color 0.3s ease;
-    }
-    .nav-item:hover {
-      color: #ff0000; /* Red hover for retro feel */
-    }
-    .gallery {
-      padding: 2rem 1rem;
-      text-align: center;
-      background: #808080; /* Gray background */
-    }
-    .gallery h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #000000;
-    }
-    .tea-frame {
-      display: inline-block;
-      width: 250px;
-      background: #c0c0c0;
-      border: 2px solid #000000;
-      box-shadow: 2px 2px #ffffff, -2px -2px #808080;
-      padding: 10px;
-      margin: 10px;
-    }
-    .tea-frame img {
-      width: 100%;
-      border: 1px solid #000000;
-    }
-    .tea-frame h3 {
-      font-size: 1.4rem;
-      margin: 0.3rem 0;
-      color: #000080;
-    }
-    .tea-frame p {
-      font-size: 0.9rem;
-      color: #000000;
-    }
-    .tea-frame a {
-      color: #000080;
-      text-decoration: underline;
-    }
-    @keyframes swirl {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes fallBoba {
-      0% { transform: translate(0, -20px); opacity: 1; }
-      50% { transform: translate(Math.random() * 30 - 15, 50vh); }
-      100% { transform: translate(Math.random() * 30 - 15, 100vh); opacity: 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Bubble Tea Shop</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #loading { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: #FFE8AC; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: sans-serif; 
+            font-size: 24px; 
+            color: #F9CDD9; 
+            z-index: 10; 
+        }
+    </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Bubble Tea</h1>
-      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Bubble Tea" class="hero-image" id="nav-trigger">
-      <p>Deliciously Artistic</p>
-      <a href="classic-milk-tea.html" class="cta-button">Learn More</a>
-      <a href="#order" class="order-button">Order Now</a>
-    </div>
-    <div class="boba-particles"></div>
-    <nav class="art-nav">
-      <a href="#home" class="nav-item">Home</a>
-      <a href="#about" class="nav-item">About</a>
-      <a href="#contact" class="nav-item">Contact</a>
-    </nav>
-  </div>
-  <section class="gallery">
-    <h2>Our Flavors</h2>
-    <div class="tea-frame">
-      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Classic Milk Tea">
-      <h3>Classic Milk Tea</h3>
-      <p>A swirl of tea and cream.</p>
-      <a href="classic-milk-tea.html">Explore</a>
-    </div>
-  </section>
-  <script>
-    // Animation for initial load
-    let tl = new TimelineLite();
-    tl.from(".hero h1", { opacity: 0, y: 20, duration: 1, ease: "power1.out" })
-      .from(".hero-image", { opacity: 0, scale: 0.9, duration: 1, delay: 0.2, ease: "back.out(1.5)" }, "-=0.8")
-      .from(".hero p", { opacity: 0, y: 15, duration: 1, delay: 0.4, ease: "power1.out" }, "-=0.6")
-      .from(".cta-button, .order-button", { opacity: 0, scale: 0.8, duration: 1, delay: 0.6, ease: "back.out(1.5)" }, "-=0.4")
-      .from(".tea-frame", { opacity: 0, y: 30, duration: 1, delay: 0.8, ease: "power2.out" }, "-=0.2");
+    <div id="loading">Loading Virtual Bubble Tea Shop...</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r167/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.167.0/examples/jsm/controls/OrbitControls.js?module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xFFE8AC); // Light yellow background from color palette
 
-    // Boba animation
-    function createBoba() {
-      const boba = document.createElement('div');
-      boba.classList.add('boba');
-      boba.style.left = Math.random() * 100 + 'vw'; // Random horizontal start
-      boba.style.animationDuration = Math.random() * 4 + 4 + 's'; // Random duration between 4-8s
-      document.querySelector('.boba-particles').appendChild(boba);
-      setTimeout(() => boba.remove(), 8000); // Remove after animation
-    }
-    setInterval(createBoba, 250); // Create new boba every 250ms
+        // Camera
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 5, 20); // Start outside the shop
 
-    // Nav trigger
-    const nav = document.querySelector('.art-nav');
-    const trigger = document.getElementById('nav-trigger');
-    trigger.addEventListener('click', () => {
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-      let tlNav = new TimelineLite();
-      tlNav.from(".nav-item", { 
-        opacity: 0, 
-        rotation: 180, 
-        duration: 0.8, 
-        stagger: 0.1, 
-        ease: "power1.out" 
-      });
-    });
-  </script>
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 10, 5);
+        scene.add(directionalLight);
+
+        // Floor (placeholder for shop floor)
+        const floorGeometry = new THREE.PlaneGeometry(20, 20);
+        const floorMaterial = new THREE.MeshBasicMaterial({ color: 0xF9CDD9, side: THREE.DoubleSide });
+        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.rotation.x = -Math.PI / 2;
+        scene.add(floor);
+
+        // Walls (simple placeholders)
+        const wallMaterial = new THREE.MeshBasicMaterial({ color: 0xFFE8AC });
+        const backWall = new THREE.Mesh(new THREE.BoxGeometry(20, 10, 0.1), wallMaterial);
+        backWall.position.set(0, 5, -10);
+        scene.add(backWall);
+
+        const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.1, 10, 20), wallMaterial);
+        leftWall.position.set(-10, 5, 0);
+        scene.add(leftWall);
+
+        const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.1, 10, 20), wallMaterial);
+        rightWall.position.set(10, 5, 0);
+        scene.add(rightWall);
+
+        // Counter (placeholder)
+        const counterGeometry = new THREE.BoxGeometry(10, 2, 5);
+        const counterMaterial = new THREE.MeshBasicMaterial({ color: 0xF9CDD9 });
+        const counter = new THREE.Mesh(counterGeometry, counterMaterial);
+        counter.position.set(0, 1, -5);
+        scene.add(counter);
+
+        // Bubble Tea placeholders (spheres for bobas)
+        const bobaMaterial = new THREE.MeshBasicMaterial({ color: 0x8B4513 }); // Brown for tapioca pearls
+        const boba1 = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), bobaMaterial);
+        boba1.position.set(-2, 2.5, -5);
+        scene.add(boba1);
+
+        const boba2 = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), bobaMaterial);
+        boba2.position.set(0, 2.5, -5);
+        scene.add(boba2);
+
+        const boba3 = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), bobaMaterial);
+        boba3.position.set(2, 2.5, -5);
+        scene.add(boba3);
+
+        // Cup placeholder (cylinder)
+        const cupGeometry = new THREE.CylinderGeometry(1, 1, 3, 32);
+        const cupMaterial = new THREE.MeshBasicMaterial({ color: 0xFFE8AC, transparent: true, opacity: 0.8 });
+        const cup = new THREE.Mesh(cupGeometry, cupMaterial);
+        cup.position.set(0, 1.5, -7);
+        scene.add(cup);
+
+        // Orbit Controls for exploration
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        // Raycaster for interactions (e.g., click on boba)
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let selectedObject = null;
+
+        function onMouseClick(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects([boba1, boba2, boba3, cup]);
+            if (intersects.length > 0) {
+                selectedObject = intersects[0].object;
+                // Zoom in on selected boba (using GSAP)
+                gsap.to(camera.position, {
+                    x: selectedObject.position.x,
+                    y: selectedObject.position.y + 1,
+                    z: selectedObject.position.z + 2,
+                    duration: 1,
+                    ease: "power2.inOut",
+                    onUpdate: () => camera.lookAt(selectedObject.position)
+                });
+                // Example popup info (you can expand this)
+                alert("Exploring this bubble tea item! (Placeholder info)");
+            }
+        }
+        window.addEventListener('click', onMouseClick);
+
+        // Window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Entrance animation: Fly camera into the shop
+        gsap.to(camera.position, {
+            z: 10,
+            y: 3,
+            duration: 3,
+            ease: "power2.out",
+            onUpdate: () => camera.lookAt(0, 0, -5), // Look towards counter
+            onComplete: () => {
+                // Fade out loading screen
+                gsap.to('#loading', { opacity: 0, duration: 1, onComplete: () => document.getElementById('loading').style.display = 'none' });
+            }
+        });
+
+        // Simple boba animations (bouncing)
+        gsap.to(boba1.position, { y: 3, duration: 1, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(boba2.position, { y: 3, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.2 });
+        gsap.to(boba3.position, { y: 3, duration: 1.1, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.4 });
+    </script>
 </body>
 </html>
