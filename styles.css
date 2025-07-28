@@ -1,142 +1,176 @@
 body {
   margin: 0;
-  font-family: 'Cinzel', serif;
-  background: linear-gradient(180deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-  color: #fff;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #2b1b17 0%, #4a3728 100%);
+  color: #f4e8c1;
   overflow-x: hidden;
-}
-
-.canvas {
-  position: relative;
-  min-height: 100vh;
 }
 
 .hero {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   position: relative;
-  background: url('https://images.unsplash.com/photo-1616442051047-f2d6f2ce4940') no-repeat center/cover;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  background: url('https://images.unsplash.com/photo-1608030804530-7e4e46b466ae') center/cover no-repeat;
+  overflow: hidden;
 }
 
-.hero-particles {
+.hero-canvas {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.3), rgba(138, 43, 226, 0.5));
-  mix-blend-mode: screen;
-  animation: swirl 15s infinite linear;
+  background: radial-gradient(circle, rgba(255, 223, 186, 0.4), rgba(139, 69, 19, 0.3));
+  mix-blend-mode: soft-light;
+  animation: canvasGlow 8s ease-in-out infinite;
 }
 
 .hero h1 {
-  font-size: 6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 20px rgba(138, 43, 226, 0.6);
-  animation: neon 3s ease-in-out infinite alternate;
+  font-size: 5rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 15px rgba(255, 223, 186, 0.7);
+  animation: fadeInText 2s ease-in-out;
 }
 
 .hero p {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-style: italic;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  margin: 1rem 0;
+  text-shadow: 0 0 10px rgba(255, 223, 186, 0.5);
 }
 
 .cta-button {
-  padding: 1.5rem 3rem;
-  font-size: 1.5rem;
-  color: #fff;
-  background: linear-gradient(45deg, #ff00cc, #ff9900);
-  border: 2px solid #fff;
-  border-radius: 50%;
+  display: inline-block;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.3rem;
+  color: #2b1b17;
+  background: linear-gradient(45deg, #d4a017, #ffdfba);
+  border: 2px solid #f4e8c1;
+  border-radius: 30px;
   text-decoration: none;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-button:hover {
-  transform: rotate(360deg) scale(1.2);
-  box-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 223, 186, 0.8);
 }
 
-.menu-portal {
-  padding: 6rem 2rem;
+.gallery {
+  padding: 4rem 2rem;
   text-align: center;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
 }
 
-.menu-portal h2 {
-  font-size: 4rem;
-  margin-bottom: 3rem;
-  animation: pulse-text 4s ease-in-out infinite;
+.gallery h2 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  animation: floatText 3s ease-in-out infinite;
 }
 
-.tea-orb {
+.tea-frame {
   display: inline-block;
-  width: 350px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  padding: 2rem;
-  margin: 2rem;
+  width: 320px;
   position: relative;
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
-  animation: orbit 10s infinite linear;
+  margin: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 223, 186, 0.1);
+  border: 3px solid #d4a017;
+  border-radius: 15px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.tea-orb:hover {
-  transform: scale(1.2) rotate(15deg);
-  box-shadow: 0 0 60px rgba(255, 105, 180, 0.7);
+.tea-frame:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 0 30px rgba(255, 223, 186, 0.6);
 }
 
-.tea-orb img {
+.tea-frame img {
   width: 100%;
-  border-radius: 50%;
-  border: 3px solid #ff00cc;
-  animation: spin 20s infinite linear;
+  border-radius: 10px;
+  filter: sepia(0.3);
+  transition: filter 0.3s ease;
 }
 
-.tea-orb h3 {
-  font-size: 2rem;
-  margin: 1rem 0;
+.tea-frame:hover img {
+  filter: sepia(0);
 }
 
-.tea-orb p {
-  font-size: 1.2rem;
-  color: #ddd;
+.frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(139, 69, 19, 0.2));
+  pointer-events: none;
+  animation: shimmer 5s infinite ease-in-out;
 }
 
-.tea-orb a {
-  color: #ff9900;
+.tea-frame h3 {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+}
+
+.tea-frame p {
+  font-size: 1.1rem;
+  color: #f4e8c1;
+}
+
+.tea-frame a {
+  color: #d4a017;
   text-decoration: none;
   font-weight: bold;
 }
 
-@keyframes swirl {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes canvasGlow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
 }
 
-@keyframes neon {
-  0% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 10px rgba(138, 43, 226, 0.4); }
-  100% { text-shadow: 0 0 60px rgba(255, 215, 0, 1), 0 0 30px rgba(138, 43, 226, 1); }
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-text {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-@keyframes orbit {
-  0% { transform: rotate(0deg) translateY(10px); }
-  100% { transform: rotate(360deg) translateY(10px); }
+@keyframes shimmer {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.tea-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  gap: 2rem;
+}
+
+.tea-details img {
+  width: 400px;
+  border-radius: 15px;
+  border: 3px solid #d4a017;
+}
+
+.details-content {
+  max-width: 500px;
+}
+
+.details-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
