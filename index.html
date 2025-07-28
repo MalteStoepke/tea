@@ -8,21 +8,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <div class="hero">
     <div class="hero-content">
       <h1>Bubble Tea</h1>
-      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Bubble Tea" class="hero-image">
+      <img src="https://images.unsplash.com/photo-1595981266689-6f563e9179c2" alt="Bubble Tea" class="hero-image" id="nav-trigger">
       <p>Deliciously Artistic</p>
       <a href="classic-milk-tea.html" class="cta-button">Learn More</a>
       <a href="#order" class="order-button">Order Now</a>
     </div>
     <div class="boba-particles"></div>
-  </header>
+    <nav class="art-nav">
+      <a href="#home" class="nav-item">Home</a>
+      <a href="#about" class="nav-item">About</a>
+      <a href="#contact" class="nav-item">Contact</a>
+    </nav>
+  </div>
   <section class="gallery">
     <h2>Our Flavors</h2>
     <div class="tea-frame">
@@ -48,6 +48,19 @@
       setTimeout(() => boba.remove(), 10000);
     }
     setInterval(createBoba, 300);
+
+    const nav = document.querySelector('.art-nav');
+    const trigger = document.getElementById('nav-trigger');
+    trigger.addEventListener('click', () => {
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+      gsap.from(".nav-item", { 
+        opacity: 0, 
+        rotation: 360, 
+        duration: 1, 
+        stagger: 0.1, 
+        ease: "power2.out" 
+      });
+    });
   </script>
 </body>
 </html>
